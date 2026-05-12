@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deep Review: 20260512-150300-pr-69</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+/* Deep Review — canonical stylesheet
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Edit this file to change the look of all future reviews.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f8f9fb;
+  margin: 0;
+  padding: 2rem 1rem;
+}
+main { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin-bottom: 0.5rem; color: #111827; }
+h2 { font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: 1rem; color: #111827; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.4rem; }
+h3 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+hr { border: none; border-top: 2px solid #e5e7eb; margin: 2rem 0; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace; font-size: 0.85em; background: #f3f4f6; padding: 0.15em 0.35em; border-radius: 4px; }
+
+/* Code blocks — override Prism defaults */
+pre { margin: 0 !important; border-radius: 0 0 8px 8px !important; }
+pre[class*="language-"] { font-size: 0.78rem; line-height: 1.3; }
+pre code { background: none; padding: 0; }
+
+/* Report metadata table */
+.meta-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+.meta-table td { padding: 0.35rem 0.6rem; border: 1px solid #e5e7eb; vertical-align: top; }
+.meta-table td:first-child { font-weight: 600; width: 140px; background: #f9fafb; white-space: nowrap; }
+
+/* Cards — every section and finding lives in a card */
+.card { border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1.2rem; }
+.card-neutral { background: #f1f3f5; border: 1px solid #d5d9e0; }
+.card-critical { background: #ffeef0; border: 1px solid #f5c6cb; }
+.card-important { background: #fff0e0; border: 1px solid #f5d9a8; }
+.card-suggestion { background: #f0f6ff; border: 1px solid #c7d9f5; }
+.card-design { background: #f0faf4; border: 1px solid #b7e4c7; }
+
+/* Severity section headings — colored to match their cards */
+.section-critical { color: #9b1c1c; }
+.section-important { color: #92400e; }
+.section-suggestion { color: #1e40af; }
+.section-design { color: #065f46; }
+
+/* Agent attribution pills */
+.pill { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.15em 0.55em; border-radius: 999px; margin-right: 0.3em; vertical-align: middle; letter-spacing: 0.01em; }
+.pill-claude { background: #e9d5ff; color: #6b21a8; }
+.pill-codex { background: #d1fae5; color: #065f46; }
+.pill-gemini { background: #ffe4e6; color: #9f1239; }
+
+/* Finding titles */
+.finding-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; line-height: 1.4; }
+.finding-num { font-weight: 800; }
+
+/* Code file header — dark bar above each source code block.
+ * The filename is a GitHub permalink to the displayed line range.
+ * Text color is light gray (#adbac7) for the bar, green (#7ee787)
+ * for the hyperlink — matching GitHub's dark-mode file header. */
+.code-file-header { background: #2d333b; color: #adbac7; font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace; font-size: 0.75rem; padding: 0.4rem 0.9rem; border-radius: 8px 8px 0 0; margin-top: 0.8rem; }
+.code-file-header a { color: #7ee787; }
+.code-file-header a:hover { text-decoration: underline; }
+
+/* Line numbers (CSS counters) and line highlighting */
+.code-line { display: block; }
+.code-line::before {
+  content: counter(line);
+  counter-increment: line;
+  display: inline-block;
+  width: 3em;
+  margin-right: 0.8em;
+  padding-right: 0.5em;
+  text-align: right;
+  color: #636e7b;
+  border-right: 1px solid #3d4556;
+  user-select: none;
+}
+.line-hl { background: rgba(255, 199, 0, 0.18); }
+
+/* Pilcrow anchor links — hidden until parent is hovered */
+.pilcrow { color: #d1d5db; text-decoration: none; font-weight: 400; margin-left: 0.4em; opacity: 0; transition: opacity 0.15s; }
+h2:hover .pilcrow, h3:hover .pilcrow, .finding-title:hover .pilcrow { opacity: 1; }
+.pilcrow:hover { color: #6b7280; text-decoration: none; }
+
+/* Fix label */
+.fix-label { font-weight: 700; }
+
+/* Agent retro summary table */
+.retro-table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; font-size: 0.9rem; table-layout: fixed; }
+.retro-table th, .retro-table td { padding: 0.45rem 0.7rem; border: 1px solid #e5e7eb; text-align: left; }
+.retro-table th { background: #f3f4f6; font-weight: 600; }
+.retro-table tr:nth-child(even) { background: #f9fafb; }
+
+/* Supply-chain Summary table — first column gets breathing room,
+ * numeric middle columns center, header keeps its label on one line. */
+.summary-table { width: 100%; border-collapse: collapse; margin: 0.4rem 0 0.8rem; font-size: 0.92rem; }
+.summary-table th, .summary-table td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #d5d9e0;
+  vertical-align: top;
+  text-align: left;
+}
+.summary-table th { background: rgba(255, 255, 255, 0.65); font-weight: 600; white-space: nowrap; }
+.summary-table td:first-child { min-width: 11rem; white-space: nowrap; }
+.summary-table th:not(:first-child):not(:last-child),
+.summary-table td:not(:first-child):not(:last-child) { text-align: center; }
+
+/* Lists and paragraphs inside cards */
+.card ul, .card ol { margin: 0.4rem 0; padding-left: 1.5rem; }
+.card li { margin-bottom: 0.3rem; }
+.card p { margin: 0.5rem 0; }
+.card p:first-child { margin-top: 0; }
+
+/* Supply-chain issue rows — used by issueList for bullets that
+ * uniformly start with a `file:line` reference. The location renders
+ * in a dark bar above the description so the eye picks up the path
+ * separately from the prose. */
+.issue-list { margin: 0.6rem 0; }
+.issue-row {
+  margin-bottom: 0.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+}
+.issue-loc {
+  background: #2d333b;
+  color: #adbac7;
+  padding: 0.3rem 0.7rem;
+  font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+.issue-loc a { color: #7ee787; text-decoration: none; }
+.issue-loc a:hover { text-decoration: underline; }
+.issue-loc code { background: none; padding: 0; color: inherit; font-size: 1em; }
+.issue-desc { padding: 0.55rem 0.8rem; }
+.issue-desc code { font-size: 0.85em; }
+
+/* Verdict highlight in metadata table */
+.verdict { font-weight: 700; }
+
+/* GitHub reference tooltips — shown on hover for #N links */
+.gh-tooltip {
+  position: absolute;
+  background: #1f2328;
+  color: #e6edf3;
+  padding: 0.55em 0.75em;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  max-width: 380px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.gh-tooltip-state {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15em 0.5em;
+  border-radius: 999px;
+  margin-right: 0.4em;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.gh-state-open { background: #238636; color: #fff; }
+.gh-state-closed { background: #848d97; color: #fff; }
+.gh-state-merged { background: #8957e5; color: #fff; }
+.gh-tooltip-title { vertical-align: baseline; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  body { padding: 1rem 0.5rem; }
+  .card { padding: 0.9rem 1rem; }
+  pre code { font-size: 0.72rem; }
+}
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Deep Review: 20260512-150300-pr-69</h1>
+
+    <table class="meta-table">
+      <tr><td>Date</td><td>2026-05-12 15:03</td></tr>
+      <tr><td>Repo</td><td><a href="https://github.com/lima-vm/go-qcow2reader">lima-vm/go-qcow2reader</a></td></tr>
+      <tr><td>Round</td><td>1</td></tr>
+      <tr><td>Author</td><td><a href="https://github.com/nirs">@nirs</a></td></tr>
+      <tr><td>PR</td><td><a href="https://github.com/lima-vm/go-qcow2reader/pull/69" class="gh-ref" data-title="Support direct I/O" data-state="open" data-type="pr">#69</a> — Support direct I/O</td></tr>
+      <tr><td>Branch</td><td><code>direct-io</code></td></tr>
+      <tr><td>Commits</td><td><a href="https://github.com/lima-vm/go-qcow2reader/commit/6f7a0f8"><code>6f7a0f8</code></a> hack: Compare also with -direct<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/129422e"><code>129422e</code></a> cmd: Add -direct flag for direct I/O conversion<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/caa0dc7"><code>caa0dc7</code></a> test: Truncate output image to final size before converting<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/306dba9"><code>306dba9</code></a> test: Add direct I/O benchmarks for convert package<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/bdcc882"><code>bdcc882</code></a> test: Use /var/tmp for convert benchmark temp directories on Linux<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/c807f97"><code>c807f97</code></a> test: Move convert benchmarks to convert package<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/2a2044e"><code>2a2044e</code></a> test: Extract test image helpers to test/testimage package<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/700ebdc"><code>700ebdc</code></a> test: Extract unit constants to test/units package<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/c5897d7"><code>c5897d7</code></a> convert: Add direct I/O support<br><a href="https://github.com/lima-vm/go-qcow2reader/commit/979f2b4"><code>979f2b4</code></a> convert: extract worker struct from Convert goroutine</td></tr>
+      <tr><td>Reviewers</td><td><span class="pill pill-claude">Claude</span> Opus 4.7 (effort: xhigh), <span class="pill pill-codex">Codex</span> GPT 5.5 (effort: xhigh), <span class="pill pill-gemini">Gemini</span> 3.1 Pro (effort: default)</td></tr>
+      <tr><td>Verdict</td><td><span class="verdict">Merge with fixes</span> &mdash; core direct-I/O path is correct; build tags need to cover non-Unix targets, negative <code>Alignment</code> must be rejected, and the CLI should not silently inflate the output file.</td></tr>
+      <tr><td>Wall-clock time</td><td><code>31 min 24 s</code></td></tr>
+    </table>
+
+    <hr>
+
+    <hr>
+    <h2 id="executive-summary">Executive Summary <a href="#executive-summary" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>PR <a href="https://github.com/lima-vm/go-qcow2reader/issues/69" class="gh-ref" data-title="Support direct I/O" data-state="open" data-type="pr">#69</a> adds optional direct-I/O writes to the <code>convert</code> package by refactoring the inner goroutine body into a <code>worker</code> struct, introducing a <code>directio</code> package with platform-specific <code>Flag</code> / <code>DefaultAlignment</code> constants, and exposing a <code>-direct</code> CLI flag. It also factors test helpers into <code>test/units</code> and <code>test/testimage</code> and adds buffered/direct benchmarks. The core alignment and padding logic is sound — buffer alignment is computed correctly, the last-write padding fires only on the image-end iteration, and worker ownership of mutable state is clean.</p>
+    <p>Four merge-blockers remain, all addressable with small changes:</p>
+    <ol>
+      <li><code>directio_other.go</code>&#39;s build tag is over-broad — <code>plan9</code> / <code>js</code>-<code>wasm</code> / <code>wasip1</code>-<code>wasm</code> fall into the <code>O_DSYNC</code> branch and fail to compile.</li>
+      <li><code>Options.Validate()</code> accepts negative <code>Alignment</code>, which then panics inside <code>allocateBuffer</code>.</li>
+      <li>The example CLI truncates to <code>img.Size()</code> <em>before</em> <code>Convert</code>; the direct-I/O padding write then extends the file past <code>img.Size()</code>, so the on-disk size no longer matches the virtual size.</li>
+      <li>The &quot;extent.Start is cluster-aligned, cluster size divides 4 KiB&quot; invariant that makes the inner <code>WriteAt</code> calls safe is load-bearing but not documented or asserted; backends or qcow2 images with sub-4 KiB cluster sizes can silently EINVAL.</li>
+    </ol>
+    </div>
+    <hr>
+    <h2 id="critical-issues" class="section-critical">Critical Issues <a href="#critical-issues" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-critical">
+    <p>None.</p>
+    </div>
+    <hr>
+    <h2 id="important-issues" class="section-important">Important Issues <a href="#important-issues" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-important">
+      <div class="finding-title" id="I1">
+        <span class="finding-num">I1.</span> <code>directio_other.go</code> build tag covers <code>plan9</code>, <code>js</code>/<code>wasm</code>, and <code>wasip1</code>/<code>wasm</code>, which lack <code>syscall.O_DSYNC</code> <span class="pill pill-codex">Codex</span><a href="#I1" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/directio/directio_other.go#L1-L13">directio/directio_other.go</a></div>
+      <pre data-start="1" data-line="1-13"><code class="language-go">// Must match the negation of the build tags in directio.go.
+//go:build !linux &amp;&amp; !freebsd &amp;&amp; !netbsd &amp;&amp; !dragonfly &amp;&amp; !aix &amp;&amp; !windows
+
+package directio
+
+import &quot;syscall&quot;
+
+// Flag is the open flag for direct I/O. On platforms without O_DIRECT, we use
+// O_DSYNC to emulate direct I/O, same as QEMU.
+const Flag = syscall.O_DSYNC
+
+// DefaultAlignment is 0 since O_DSYNC does not require aligned buffers.
+const DefaultAlignment = 0</code></pre>
+    <p>The negation of <code>directio.go</code>&#39;s build tag matches every GOOS that is not Linux/FreeBSD/NetBSD/DragonFly/AIX/Windows, including <code>plan9</code>, <code>js</code>/<code>wasm</code>, and <code>wasip1</code>/<code>wasm</code>. Those targets do not define <code>syscall.O_DSYNC</code>, so the new package fails to compile. Codex verified with <code>GOOS=plan9 GOARCH=amd64 go test ./directio</code>, <code>GOOS=js GOARCH=wasm go test ./directio</code>, and <code>GOOS=wasip1 GOARCH=wasm go test ./directio</code>. The library compiled on every other GOOS Codex tried (windows, darwin, freebsd, netbsd, dragonfly, aix, openbsd, solaris, illumos, ios, android, linux/386).</p>
+    <p>Fix: narrow the O_DSYNC fallback to Unix targets, and add a no-op fallback for non-Unix/non-Windows targets.</p>
+      <pre><code class="language-diff">-//go:build !linux &amp;&amp; !freebsd &amp;&amp; !netbsd &amp;&amp; !dragonfly &amp;&amp; !aix &amp;&amp; !windows
++//go:build unix &amp;&amp; !linux &amp;&amp; !freebsd &amp;&amp; !netbsd &amp;&amp; !dragonfly &amp;&amp; !aix</code></pre>
+      <pre><code class="language-go">//go:build !unix &amp;&amp; !windows
+
+package directio
+
+const Flag = 0
+const DefaultAlignment = 0</code></pre>
+    </div>
+    <div class="card card-important">
+      <div class="finding-title" id="I2">
+        <span class="finding-num">I2.</span> Negative <code>Options.Alignment</code> bypasses validation and panics in <code>allocateBuffer</code> <span class="pill pill-codex">Codex</span> <span class="pill pill-gemini">Gemini</span><a href="#I2" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/convert/convert.go#L91-L108">convert/convert.go</a></div>
+      <pre data-start="91" data-line="96-103"><code class="language-go">	// segment size.
+	if o.SegmentSize%int64(o.BufferSize) != 0 {
+		return errors.New(&quot;segment size not aligned to buffer size&quot;)
+	}
+
+	if o.Alignment &gt; 0 {
+		if o.Alignment&amp;(o.Alignment-1) != 0 {
+			return errors.New(&quot;alignment must be a power of 2&quot;)
+		}
+		if o.BufferSize%o.Alignment != 0 {
+			return errors.New(&quot;buffer size not aligned to alignment&quot;)
+		}
+	}
+
+	return nil
+}
+
+type conversion struct {</code></pre>
+    <p>The validation block at line 96 only fires for <code>Alignment &gt; 0</code>. <code>Options{Alignment: -1}</code> passes <code>Validate()</code>, reaches <code>allocateBuffer</code>, which then computes <code>make([]byte, opts.BufferSize+opts.Alignment)</code> (a smaller-than-expected allocation) and <code>uintptr(opts.Alignment)</code> (which wraps to a huge value, making the modulus reduction return the raw address). The final <code>buf[opts.Alignment-remainder:]</code> slices with a large negative index and panics. Other Validate fields (<code>SegmentSize</code>, <code>BufferSize</code>, <code>Workers</code>) reject negatives explicitly; <code>Alignment</code> should match.</p>
+    <p>Fix: reject negative alignment before the existing positive-alignment checks, and extend <code>TestValidateAlignmentInvalid</code> with a negative case.</p>
+      <pre><code class="language-diff">+    if o.Alignment &lt; 0 {
++        return errors.New(&quot;alignment must not be negative&quot;)
++    }
+     if o.Alignment &gt; 0 {
+         if o.Alignment&amp;(o.Alignment-1) != 0 {
+             return errors.New(&quot;alignment must be a power of 2&quot;)</code></pre>
+    </div>
+    <div class="card card-important">
+      <div class="finding-title" id="I3">
+        <span class="finding-num">I3.</span> Direct-I/O padding extends the destination file past <code>img.Size()</code> <span class="pill pill-gemini">Gemini</span><a href="#I3" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/cmd/go-qcow2reader-example/convert.go#L76-L104">cmd/go-qcow2reader-example/convert.go</a></div>
+      <pre data-start="76" data-line="81-99"><code class="language-go">	if err != nil {
+		return err
+	}
+	defer t.Close()
+
+	if err := t.Truncate(img.Size()); err != nil {
+		return err
+	}
+
+	bar := newProgressBar(img.Size())
+	bar.Start()
+	defer bar.Finish()
+	options.Progress = bar
+
+	if err := convert.Convert(t, img, options); err != nil {
+		return err
+	}
+
+	if err := t.Sync(); err != nil {
+		return err
+	}
+
+	return t.Close()
+}
+
+// progressBar adapts pb.ProgressBar to the Updater interface.
+type progressBar struct {
+	*pb.ProgressBar
+}</code></pre>
+      <pre><code class="language-go">func (w *worker) ensureAlignment(nr int, extent image.Extent) int {
+    if w.opts.Alignment &gt; 0 &amp;&amp; extent.Start+extent.Length == w.conv.size &amp;&amp; nr%w.opts.Alignment != 0 {
+        alignedLen := align.Up(nr, w.opts.Alignment)
+        ...
+        return alignedLen
+    }
+    return nr
+}</code></pre>
+    <p>The CLI truncates the destination to <code>img.Size()</code> <em>before</em> <code>Convert</code>, but the last padded <code>WriteAt</code> writes <code>alignedLen</code> bytes starting at an offset that puts the end past <code>img.Size()</code>. <code>pwrite</code> (and <code>os.File.WriteAt</code>) extends the file to cover the write, so the final on-disk size is <code>align.Up(img.Size(), Alignment)</code>, not <code>img.Size()</code>. A converted raw image should match the virtual size byte-for-byte; this differs from the buffered path and from <code>qemu-img convert</code>. The author replied to an earlier reviewer with &quot;We truncate the file at line 81&quot; — that truncate happens before the padded write, so it does not prevent the extension.</p>
+    <p>Fix: re-truncate to <code>img.Size()</code> after <code>Convert</code> completes (before <code>t.Sync()</code>), so the direct-I/O padding does not leak into the final file size:</p>
+      <pre><code class="language-diff">     if err := convert.Convert(t, img, options); err != nil {
+         return err
+     }
++    if err := t.Truncate(img.Size()); err != nil {
++        return err
++    }
+     if err := t.Sync(); err != nil {
+         return err
+     }</code></pre>
+    </div>
+    <div class="card card-important">
+      <div class="finding-title" id="I4">
+        <span class="finding-num">I4.</span> The &quot;extent.Start is <code>Alignment</code>-aligned&quot; invariant is load-bearing but undocumented and unchecked <span class="pill pill-claude">Claude</span> <span class="pill pill-gemini">Gemini</span><a href="#I4" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/convert/convert.go#L55-L68">convert/convert.go</a></div>
+      <pre data-start="55" data-line="60-63"><code class="language-go">	Workers int
+
+	// If set, update progress during conversion.
+	Progress Updater
+
+	// Alignment in bytes for direct I/O. When set, the write buffer is aligned
+	// to this value and the last write is padded with zeros to the alignment
+	// boundary. Must be a power of 2, and BufferSize must be a multiple of it.
+	Alignment int
+}
+
+// Validate validates options and set default values. Returns an error for
+// invalid option values.
+func (o *Options) Validate() error {</code></pre>
+      <pre><code class="language-go">nw, err := w.conv.wa.WriteAt(w.buf[:writeLen], extent.Start)</code></pre>
+    <p>The inner write at line 269 uses <code>extent.Start</code> as the file offset, and <code>ensureAlignment</code> only pads the last partial read of the <em>last extent of the image</em>. Correctness requires every <code>extent.Start</code> (from every backend, for every cluster size) to be a multiple of <code>opts.Alignment</code>. <a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/image/image.go#L12-L14"><code>image.go:12-14</code></a> promises only &quot;Extents are aligned to the underlying file system block size (e.g. 4k), or the image format cluster size (e.g. 64k)&quot; — that holds for typical qcow2 images (64 KiB clusters) but not for qcow2 images created with a 512-byte cluster size, nor for backends whose contract returns sub-<code>Alignment</code> extents. Without <code>O_DIRECT</code> the write succeeds; with <code>O_DIRECT</code> on Linux it returns <code>EINVAL</code>.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/image/image.go#L7-L19">image/image.go</a></div>
+      <pre data-start="7" data-line="12-14"><code class="language-go">
+// Type must be a &quot;Backing file format name string&quot; that appears in QCOW2.
+type Type string
+
+// Extent describes a byte range in the image with the same allocation,
+// compression, or zero status. Extents are aligned to the underlying file
+// system block size (e.g. 4k), or the image format cluster size (e.g. 64k). One
+// extent can describe one or more file system blocks or image clusters.
+type Extent struct {
+	// Offset from start of the image in bytes.
+	Start int64 `json:&quot;start&quot;`
+	// Length of this extent in bytes.
+	Length int64 `json:&quot;length&quot;`</code></pre>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/convert/convert.go#L264-L274">convert/convert.go</a></div>
+      <pre data-start="264" data-line="269"><code class="language-go">			}
+		}
+
+		if !bytes.Equal(w.buf[:nr], w.conv.zero[:nr]) {
+			writeLen := w.ensureAlignment(nr, extent)
+			nw, err := w.conv.wa.WriteAt(w.buf[:writeLen], extent.Start)
+			if err != nil {
+				return err
+			}
+			if nw != writeLen {
+				return fmt.Errorf(&quot;expected to write %d, but wrote %d bytes&quot;, writeLen, nw)</code></pre>
+    <p>The author dismissed an earlier reviewer comment with &quot;extent.Start is aligned to cluster size (default 64k), which is aligned to 4k. Check the code returning building the extents.&quot; The &quot;default&quot; qualifier hides the assumption.</p>
+    <p>Fix: tighten the <code>Alignment</code> doc comment, and add a defensive check on the first iteration of <code>copyExtent</code> that surfaces the misuse instead of letting the kernel fail:</p>
+      <pre><code class="language-diff">     // Alignment in bytes for direct I/O. When set, the write buffer is aligned
+     // to this value and the last write is padded with zeros to the alignment
+-    // boundary. Must be a power of 2, and BufferSize must be a multiple of it.
++    // boundary. Must be a power of 2, and BufferSize must be a multiple of it.
++    // The image backend must also return Extent values whose Start is a multiple
++    // of Alignment. In practice this means Alignment must divide the image&#39;s
++    // cluster or block size (typically 64 KiB for qcow2, 4 KiB for raw on
++    // common Linux file systems).
+     Alignment int</code></pre>
+      <pre><code class="language-diff">+    if w.opts.Alignment &gt; 0 &amp;&amp; extent.Start%int64(w.opts.Alignment) != 0 {
++        return fmt.Errorf(&quot;extent.Start %d not aligned to %d&quot;, extent.Start, w.opts.Alignment)
++    }</code></pre>
+    </div>
+    <hr>
+    <h2 id="suggestions" class="section-suggestion">Suggestions <a href="#suggestions" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S1">
+        <span class="finding-num">S1.</span> No unit test exercises the direct-I/O write path <span class="pill pill-codex">Codex</span> <span class="pill pill-claude">Claude</span><a href="#S1" class="pilcrow">&#182;</a>
+      </div>
+    <p>The current tests cover option validation and buffer-address alignment. The actual conversion-with-<code>Alignment</code> flow lives only in the benchmarks (which <code>go test ./...</code> does not run). The end-of-image padding, sparse-zero skipping under <code>Alignment</code>, and the worker-loop write offsets have no automated correctness coverage.</p>
+    <p>Fix: add a small test that uses a fake <code>image.Image</code> of, say, 100 bytes (or one cluster minus a few bytes) and a recording <code>io.WriterAt</code>, runs <code>Convert</code> with <code>BufferSize: 4096, Alignment: 4096</code>, and asserts the write length is 4096 with the trailing bytes zeroed and the <code>Progress.Update</code> total equal to <code>img.Size()</code>.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S2">
+        <span class="finding-num">S2.</span> <code>testimage.Create</code> extends the file past the requested size when <code>size % chunkSize != 0</code> <span class="pill pill-gemini">Gemini</span><a href="#S2" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/test/testimage/testimage.go#L74-L95">test/testimage/testimage.go</a></div>
+      <pre data-start="74" data-line="79-90"><code class="language-go">	if err := file.Truncate(size); err != nil {
+		return err
+	}
+	if dataSize &gt; 0 {
+		reader := &amp;generator{}
+		for offset := int64(0); offset &lt; size; offset += chunkSize {
+			_, err := file.Seek(offset, io.SeekStart)
+			if err != nil {
+				return err
+			}
+			chunk := io.LimitReader(reader, dataSize)
+			if n, err := io.Copy(file, chunk); err != nil {
+				return err
+			} else if n != dataSize {
+				return fmt.Errorf(&quot;expected %d bytes, wrote %d bytes&quot;, dataSize, n)
+			}
+		}
+	}
+	return file.Close()
+}
+
+// generator generates fake data that compresses like real image data (30%).</code></pre>
+    <p>When <code>offset + dataSize &gt; size</code>, the loop&#39;s final write extends the file past the size the caller asked for (and past the prior <code>file.Truncate(size)</code>). The current benchmark sizes are all multiples of <code>chunkSize</code> (<code>2*GiB</code>), so the bug does not fire today, but a future test with an arbitrary size would silently get a larger file.</p>
+    <p>Fix: cap the per-chunk limit so the write stops at <code>size</code>:</p>
+      <pre><code class="language-diff">+    limit := dataSize
++    if offset+limit &gt; size {
++        limit = size - offset
++    }
+-    chunk := io.LimitReader(reader, dataSize)
++    chunk := io.LimitReader(reader, limit)</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S3">
+        <span class="finding-num">S3.</span> The example CLI silently degrades <code>-direct</code> to buffered I/O on Windows <span class="pill pill-claude">Claude</span><a href="#S3" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/cmd/go-qcow2reader-example/convert.go#L64-L78">cmd/go-qcow2reader-example/convert.go</a></div>
+      <pre data-start="64" data-line="69-73"><code class="language-go">	if err != nil {
+		return err
+	}
+	defer img.Close()
+
+	openFlags := os.O_CREATE | os.O_WRONLY | os.O_TRUNC
+	if direct {
+		openFlags |= directio.Flag
+		options.Alignment = directio.DefaultAlignment
+	}
+
+	t, err := os.OpenFile(target, openFlags, 0644)
+	if err != nil {
+		return err
+	}</code></pre>
+    <p><code>directio.Flag = 0</code> and <code>directio.DefaultAlignment = 0</code> on Windows (documented placeholder until Go 1.26 plumbs <code>FILE_FLAG_NO_BUFFERING</code>). A user passing <code>-direct</code> on Windows gets normal buffered writes with no warning, and the resulting benchmark numbers look like a working direct-I/O path. A one-line warning when <code>directio.Flag == 0</code> would make the limitation visible.</p>
+      <pre><code class="language-diff">     if direct {
++        if directio.Flag == 0 {
++            fmt.Fprintln(os.Stderr, &quot;warning: -direct is not yet supported on this platform; using buffered I/O&quot;)
++        }
+         openFlags |= directio.Flag
+         options.Alignment = directio.DefaultAlignment
+     }</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S4">
+        <span class="finding-num">S4.</span> <code>ensureAlignment</code>&#39;s safety relies on <code>BufferSize % Alignment == 0</code>, which the comment does not call out <span class="pill pill-claude">Claude</span><a href="#S4" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/convert/convert.go#L283-L300">convert/convert.go</a></div>
+      <pre data-start="283" data-line="288-300"><code class="language-go">		extent.Start += int64(nr)
+	}
+	return nil
+}
+
+// ensureAlignment returns the write length for nr bytes. When Alignment is set
+// and this is the last extent of the image, the write length is rounded up to
+// the alignment boundary and the padding bytes are zeroed.
+func (w *worker) ensureAlignment(nr int, extent image.Extent) int {
+	if w.opts.Alignment &gt; 0 &amp;&amp; extent.Start+extent.Length == w.conv.size &amp;&amp; nr%w.opts.Alignment != 0 {
+		alignedLen := align.Up(nr, w.opts.Alignment)
+		for i := nr; i &lt; alignedLen; i++ {
+			w.buf[i] = 0
+		}
+		return alignedLen
+	}
+	return nr
+}</code></pre>
+    <p>The guard <code>extent.Start+extent.Length == w.conv.size</code> is invariant across all iterations of one extent (line 282-283 raises <code>Start</code> and lowers <code>Length</code> by equal amounts). Padding fires only when <code>nr % Alignment != 0</code>, which can only happen on the truncated last read because <code>BufferSize % Alignment == 0</code>. The comment hides that load-bearing dependency.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/convert/convert.go#L277-L288">convert/convert.go</a></div>
+      <pre data-start="277" data-line="282-283"><code class="language-go">
+		if w.opts.Progress != nil {
+			w.opts.Progress.Update(int64(nr))
+		}
+
+		extent.Length -= int64(nr)
+		extent.Start += int64(nr)
+	}
+	return nil
+}
+
+// ensureAlignment returns the write length for nr bytes. When Alignment is set</code></pre>
+    <p>Fix: state the dependency, so a future change to <code>BufferSize</code> validation cannot silently break the padding path:</p>
+      <pre><code class="language-diff">-// ensureAlignment returns the write length for nr bytes. When Alignment is set
+-// and this is the last extent of the image, the write length is rounded up to
+-// the alignment boundary and the padding bytes are zeroed.
++// ensureAlignment returns the write length for nr bytes. When Alignment is set
++// and the extent reaches the end of the image, an unaligned nr is rounded up
++// to the alignment boundary and the padding bytes are zeroed. Padding is safe
++// only for the final partial read: BufferSize is a multiple of Alignment
++// (enforced by Validate), so full-buffer reads always have nr%Alignment == 0
++// and fall through unchanged.</code></pre>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S5">
+        <span class="finding-num">S5.</span> Benchmark wall time includes open, parse, and truncate <span class="pill pill-claude">Claude</span><a href="#S5" class="pilcrow">&#182;</a>
+      </div>
+    <p><code>benchmarkConvert</code> calls <code>b.StartTimer()</code> at the top, so <code>os.Open</code>, <code>qcow2reader.Open</code>, <code>os.OpenFile</code>, and <code>dst.Truncate(img.Size())</code> (a 2 GiB sparse extend per iteration) are all counted in the per-op wall time. The setup cost is small relative to the copy, but moving <code>StartTimer</code> to just before <code>Convert(...)</code> (and <code>StopTimer</code> to just after) would make the numbers measure what the benchmark name promises.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S6">
+        <span class="finding-num">S6.</span> <code>TestValidateAlignmentInvalid</code> skips a few easy boundary cases <span class="pill pill-claude">Claude</span><a href="#S6" class="pilcrow">&#182;</a>
+      </div>
+    <p>Worth adding (small, mechanical):</p>
+    <ul>
+      <li><code>Alignment: -1</code> (negative — see I2).</li>
+      <li><code>Alignment: 4096, BufferSize: 1024, SegmentSize: 1024</code> (alignment greater than buffer size — exercises the same &quot;not aligned&quot; branch but pins the boundary).</li>
+    </ul>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S7">
+        <span class="finding-num">S7.</span> <code>TestValidateAlignment</code> does not assert the post-defaults <code>BufferSize</code> <span class="pill pill-claude">Claude</span><a href="#S7" class="pilcrow">&#182;</a>
+      </div>
+    <p>A two-line assertion that <code>opts.BufferSize % alignment == 0</code> after <code>Validate()</code> catches a regression where the default <code>BufferSize</code> changes without updating the alignment math.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S8">
+        <span class="finding-num">S8.</span> The deferred <code>t.Close()</code> plus explicit <code>return t.Close()</code> pattern is brittle <span class="pill pill-claude">Claude</span><a href="#S8" class="pilcrow">&#182;</a>
+      </div>
+    <p><code>defer t.Close()</code> runs after <code>return t.Close()</code>; the deferred call returns <code>EBADF</code>. The pattern works (<code>defer</code> discards the error) and the benchmarks tag the line with <code>//nolint:errcheck</code>, but a future error path added between the defer and the explicit close has to reason about double-close. Using a named return with a guard, or dropping the defer and closing explicitly on every error path, makes the intent obvious.</p>
+    </div>
+    <div class="card card-suggestion">
+      <div class="finding-title" id="S9">
+        <span class="finding-num">S9.</span> Pre-existing typo in <code>Updater.Update</code> comment <span class="pill pill-claude">Claude</span><a href="#S9" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/convert/convert.go#L34-L47">convert/convert.go</a></div>
+      <pre data-start="34" data-line="39-42"><code class="language-go">// results with lima default Ubuntu image.
+const Workers = 8
+
+// Updater is an interface for tracking conversion progress.
+type Updater interface {
+	// Called from multiple goroutines after a byte range of length was converted.
+	// If the conversion is successfu, the total number of bytes will be the image
+	// virtual size.
+	Update(n int64)
+}
+
+type Options struct {
+	// SegmentSize in bytes. Must be aligned to BufferSize. If not set, use the
+	// default value (32 MiB).</code></pre>
+    <p>&quot;successfu&quot; → &quot;successful&quot;. Not introduced by this PR, but the surrounding file is being rewritten and the fix is one character.</p>
+    </div>
+    <hr>
+    <h2 id="design-observations" class="section-design">Design Observations <a href="#design-observations" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-design">
+    <p><strong>Concerns</strong></p>
+    <ul>
+      <li><em></em>macOS uses <code>O_DSYNC</code> rather than <code>F_NOCACHE</code><em></em> (in-scope) <span class="pill pill-gemini">Gemini</span> — <code>directio_other.go</code> falls back to <code>syscall.O_DSYNC</code>, which forces a synchronous flush per write but still routes through the page cache. <code>qemu-img</code> bypasses the cache on Darwin via <code>fcntl(fd, F_NOCACHE, 1)</code>. The benchmark numbers in the PR description show the <code>-direct</code> macOS run still wins handily, so this is not a correctness problem; it is a &quot;the name &#39;direct&#39; on macOS does not mean what users from a Linux background expect&quot; concern.</li>
+      <li><em></em><code>Options.Alignment</code> and the file open flag are coupled but exposed separately<em></em> (in-scope) <span class="pill pill-claude">Claude</span> — the example CLI pairs <code>directio.Flag</code> and <code>directio.DefaultAlignment</code> correctly, but a third-party caller can pass <code>Options{Alignment: 4096}</code> while opening the file with neither <code>O_DIRECT</code> nor <code>O_DSYNC</code> (or vice versa). A single <code>directio.Options()</code> helper that returns both, or a doc note that the two must move together, would prevent the mismatch.</li>
+    </ul>
+    <p><strong>Strengths</strong></p>
+    <ul>
+      <li><strong>Worker / conversion split</strong> (in-scope) <span class="pill pill-claude">Claude</span> <span class="pill pill-codex">Codex</span> — the refactor moves shared conversion state into <code>conversion</code> and per-goroutine mutable buffers into <code>worker</code>, giving the alignment/padding logic a clear ownership boundary. The inner loop reads better than the deeply nested anonymous goroutine it replaced.</li>
+      <li><em></em><code>directio</code> as a thin platform shim<em></em> (in-scope) <span class="pill pill-codex">Codex</span> <span class="pill pill-gemini">Gemini</span> — keeping the platform branch in a separate package with just two constants leaves <code>convert</code> platform-neutral. The Windows file documents the Go 1.26 TODO precisely.</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="testing-assessment">Testing Assessment <a href="#testing-assessment" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p><code>TestAllocateBufferAligned</code> and <code>TestValidateAlignment*</code> exercise the new validation and the address-alignment math directly. The benchmarks cover the full <code>Convert</code> flow with <code>Alignment &gt; 0</code> against 0%, 50%, and 100% utilized qcow2 images (uncompressed and zlib).</p>
+    <p>Gaps, by risk:</p>
+    <ol>
+      <li><em></em>End-to-end <code>Convert</code> with <code>Alignment &gt; 0</code> and an image whose size is not a multiple of <code>Alignment</code><em></em> — the <code>ensureAlignment</code> padding path lives only in benchmarks and in the comparison script. A test that uses a small fake image (e.g., 100 bytes, or 64 KiB - 7 bytes) plus a recording <code>io.WriterAt</code> would cover S1, I3, and I4 at once.</li>
+      <li><strong>Cross-GOOS compile coverage</strong> — I1 escaped because no CI job runs <code>go build</code> (or even <code>go vet</code>) for plan9/wasm. A matrix entry would have caught it.</li>
+      <li><em></em><code>Convert</code> with <code>Workers: 1</code><em></em> — the single-worker shape hits a different segment-iteration path; not specifically tested.</li>
+      <li><em></em><code>Convert</code> against an image whose last extent is zero<em></em> — would verify that no padding write fires when the file does not need it.</li>
+      <li><strong>Invalid alignment values</strong> — see S6.</li>
+    </ol>
+    </div>
+    <hr>
+    <h2 id="documentation-assessment">Documentation Assessment <a href="#documentation-assessment" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <ul>
+      <li><code>Options.Alignment</code> (<a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/cmd/go-qcow2reader-example/convert.go#L60-L63"><code>convert.go:60-63</code></a>) explains the contract on <code>BufferSize</code> and the padding behavior but omits the load-bearing requirement on <code>extent.Start</code> alignment (I4).</li>
+      <li><code>ensureAlignment</code> (<a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/cmd/go-qcow2reader-example/convert.go#L288-L290"><code>convert.go:288-290</code></a>) understates the safety argument (S4).</li>
+      <li>The new <code>directio</code> package has no <code>// Package directio …</code> doc comment. A one-line summary would help godoc consumers.</li>
+      <li>The Windows <code>directio_windows.go</code> comment documents the placeholder clearly — good practice.</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="commit-structure">Commit Structure <a href="#commit-structure" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>The 10 commits are well-scoped: the worker extraction, the direct-I/O implementation, the test-helper refactors, the CLI flag, the comparison script, and the truncation fix each stand alone. No fixup commits in the visible history. Messages match the changes.</p>
+    </div>
+    <hr>
+    <h2 id="acknowledged-limitations">Acknowledged Limitations <a href="#acknowledged-limitations" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <ul>
+      <li><strong>Windows direct I/O unsupported</strong> — <a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/directio/directio_windows.go#L3-L7"><code>directio/directio_windows.go:3-7</code></a> documents that <code>FILE_FLAG_NO_BUFFERING</code> plumbing through <code>syscall.Open</code> arrives with Go 1.26; <code>Flag</code> is <code>0</code> for now. S3 proposes a runtime warning, not removal of the limitation.</li>
+      <li><strong>Direct-I/O padding inflates the on-disk size</strong> — the author replied &quot;Padding the image size is not an issue — disk images emulate a block device&quot;. I3 disputes that for the CLI path specifically (the buffered path and <code>qemu-img convert</code> both produce an exact-size output); for library callers the behavior may be acceptable but should at least be documented.</li>
+      <li><em></em>macOS uses <code>O_DSYNC</code> rather than true uncached I/O<em></em> — <a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/directio/directio_other.go#L8-L10"><code>directio/directio_other.go:8-10</code></a> documents &quot;same as QEMU.&quot; <code>F_NOCACHE</code> via <code>fcntl</code> would more closely match Linux behavior; flagged as a design concern, not a blocker.</li>
+      <li><em></em><code>test/testimage</code> keeps a double <code>file.Close()</code><em></em> — author confirmed the second close is intentional so the file closes on error paths and the close error from the success path is still returned.</li>
+      <li><em></em><code>CreateWithExtents</code> rejects empty input<em></em> — addressed in <a href="https://github.com/lima-vm/go-qcow2reader/blob/6f7a0f812fc726cf70f16e0160eec300d83ba21d/test/testimage/testimage.go#L23-L25"><code>test/testimage/testimage.go:23-25</code></a>.</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="unresolved-feedback">Unresolved Feedback <a href="#unresolved-feedback" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>None — every substantive comment in the PR thread has been addressed by a later commit or accepted by the author with a stated rationale.</p>
+    </div>
+    <hr>
+    <h2 id="agent-performance-retro">Agent Performance Retro <a href="#agent-performance-retro" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p><strong>[Claude]</strong> — Read the change top-down and traced the alignment invariant through <code>Validate → allocateBuffer → copyExtent → ensureAlignment</code> carefully, producing I4 (the load-bearing extent-alignment requirement) as a documentation/invariant gap and a long suggestion list mostly on the test side. Did not catch the build-tag regression (I1) or the file-extension behavior (I3), both of which require either cross-GOOS verification or POSIX-write semantic reasoning. The suggestions are calibrated honestly — S5/S6/S7/S9 flag real but trivial issues and Claude explicitly tags them low priority.</p>
+    <p><strong>[Codex]</strong> — Verified its build-tag claim (I1) by actually cross-compiling four GOOS values, which is the kind of evidence the prompt asks for. Caught the negative-<code>Alignment</code> panic (I2) and the &quot;direct path has no test, only benchmarks&quot; gap (S1). Stayed conservative on severity: the build-tag regression is real but affects non-primary targets, so calling it Important rather than Critical was correct. Coverage was narrower than Claude&#39;s (no design observations beyond the worker split), which the table reflects.</p>
+    <p><strong>[Gemini]</strong> — Surfaced two findings the other two missed: the file-size extension caused by direct-I/O padding (I3) and the <code>testimage.Create</code> chunk-overflow (S2). Also raised the macOS <code>F_NOCACHE</code> design point that neither Claude nor Codex flagged. The downside: framed the extent-alignment issue as Critical with a fix recommendation (&quot;decouple I/O chunks from internal extent boundaries&quot;) that overstates what is actually broken — in the default qcow2 + 4 KiB-aligned configuration that all current callers use, the inner-loop writes are aligned. Downgraded to Important and reconciled with Claude&#39;s framing in I4.</p>
+    <table class="retro-table">
+      <thead><tr><th></th><th><span class="pill pill-claude">Claude</span> Opus 4.7</th><th><span class="pill pill-codex">Codex</span> GPT 5.5</th><th><span class="pill pill-gemini">Gemini</span> 3.1 Pro</th></tr></thead>
+      <tbody>
+        <tr><td>Duration</td><td>13m 23s</td><td>7m 05s</td><td>—</td></tr>
+        <tr><td>Findings</td><td>1I 7S</td><td>2I 1S</td><td>3I 1S</td></tr>
+        <tr><td>Tool calls</td><td>20 (Read 15, Bash 5)</td><td>76 (shell 59, stdin 17)</td><td>—</td></tr>
+        <tr><td>Design observations</td><td>3</td><td>2</td><td>3</td></tr>
+        <tr><td>False positives</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>Unique insights</td><td>7</td><td>1</td><td>3</td></tr>
+        <tr><td>Files reviewed</td><td>10</td><td>10</td><td>10</td></tr>
+        <tr><td>Coverage misses</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td><strong>Totals</strong></td><td><strong>1I 7S</strong></td><td><strong>2I 1S</strong></td><td><strong>3I 1S</strong></td></tr>
+        <tr><td>Downgraded</td><td>1 (I→S)</td><td>0</td><td>1 (I→S)</td></tr>
+        <tr><td>Dropped</td><td>2</td><td>0</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Reconciliation</strong></p>
+    <ul>
+      <li>Gemini&#39;s <code>C1</code> (extent-alignment as critical): downgraded to Important and merged with Claude&#39;s <code>I1</code> into the consolidated <code>I4</code>. Reason: the default qcow2 cluster size is 64 KiB and the default <code>DefaultAlignment</code> is 4 KiB, so the failure mode requires a non-default qcow2 cluster size or a backend whose contract returns sub-4 KiB extents. The fix is documentation plus a defensive runtime check, not the structural &quot;decouple from extent boundaries&quot; rewrite Gemini proposed.</li>
+      <li>Gemini&#39;s <code>S2</code> (negative <code>Alignment</code> rejected) and Codex&#39;s <code>I2</code> (same finding) merged into <code>I2</code> at Important severity. Reason: both agents cited the same code; Codex traced the panic to <code>allocateBuffer</code> while Gemini stopped at &quot;bypasses the validation checks&quot; — Codex&#39;s framing was more concrete, so the consolidated finding follows that.</li>
+      <li>Claude&#39;s <code>I2</code> (<code>ensureAlignment</code> comment understates the dependency): demoted to <code>S4</code> (Suggestion). Reason: the code is correct; the gap is documentation, and <code>BufferSize % Alignment == 0</code> is enforced by <code>Validate</code>, so a regression here requires a deliberate change to validation. Suggestion severity matches the actual risk.</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="review-process-notes">Review Process Notes <a href="#review-process-notes" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p><strong>Skill improvements</strong></p>
+    <ul>
+      <li><strong>Add a dimension for cross-GOOS build coverage.</strong> When a PR introduces or modifies build-tag–split files, the reviewer should attempt <code>go build</code> or <code>go vet</code> for the GOOS values that fall on the negated branch — not only the obvious primary targets. The negation of a long disjunction (<code>!linux &amp;&amp; !freebsd &amp;&amp; ...</code>) silently includes <code>plan9</code>, <code>js</code>/<code>wasm</code>, <code>wasip1</code>/<code>wasm</code>, and <code>solaris</code>, which routinely lack symbols the primary branch assumes. Flag any build-tag file whose <code>//go:build</code> line uses bare negation without an explicit <code>unix</code> or <code>windows</code> constraint.</li>
+      <li><strong>Add a dimension for &quot;padded write extends the file.&quot;</strong> When direct-I/O or block-aligned writes are added to a code path that previously produced an exact-size output, check whether the destination is re-truncated after the writes complete. POSIX <code>pwrite</code> extends the file to cover any write past EOF, so an alignment-padded last write silently changes the on-disk size. Look for <code>Truncate(size)</code> calls and confirm one runs <em>after</em> the last padded write, not just before the writes start.</li>
+    </ul>
+    <p><strong>Repo context updates</strong></p>
+    <ul>
+      <li><code>deep-review-context.md</code> does not exist yet for this repo. Bootstrap it with: &quot;Image backends return <code>Extent.Start</code> values aligned to the format&#39;s cluster or block size (e.g., 64 KiB for qcow2, 4 KiB for raw on common Linux file systems). When reviewing code that writes at <code>extent.Start</code>, confirm that any caller-imposed alignment (such as direct-I/O <code>opts.Alignment</code>) divides the smallest cluster/block size in use.&quot; This came up directly in I4 and is the kind of invariant the next reviewer of <code>convert/</code> will need.</li>
+    </ul>
+    </div>
+  </main>
+  <script>window.Prism = window.Prism || {}; Prism.manual = true;</script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-go.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-diff.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-typescript.min.js"></script>
+  <script>
+/* Deep Review — Prism initialization and line-number wrapping.
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Runs synchronously at the end of <body> — no event listeners.
+ *
+ * Prerequisite: a preceding <script> must set Prism.manual = true
+ * before the Prism core <script> loads.
+ */
+
+Prism.highlightAll();
+
+document.querySelectorAll('pre[data-start]').forEach(function(pre) {
+  var startLine = parseInt(pre.getAttribute('data-start'), 10) || 1;
+  var hlAttr = pre.getAttribute('data-line') || '';
+
+  /* Parse data-line into a Set of line numbers to highlight.
+   * Accepts comma-separated values: "75,76,77" or ranges: "75-84". */
+  var hlLines = new Set();
+  hlAttr.split(',').forEach(function(part) {
+    part = part.trim();
+    if (!part) return;
+    var m = part.match(/^(\d+)-(\d+)$/);
+    if (m) {
+      for (var i = parseInt(m[1], 10); i <= parseInt(m[2], 10); i++) hlLines.add(i);
+    } else {
+      hlLines.add(parseInt(part, 10));
+    }
+  });
+
+  var code = pre.querySelector('code');
+  if (!code) return;
+
+  var html = code.innerHTML;
+  var lines = html.split('\n');
+  /* Strip a trailing empty line that Prism sometimes leaves. */
+  if (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+
+  var wrapped = lines.map(function(line, idx) {
+    var lineNum = startLine + idx;
+    var cls = 'code-line' + (hlLines.has(lineNum) ? ' line-hl' : '');
+    return '<span class="' + cls + '">' + line + '</span>';
+  });
+
+  /* Join with '' (empty string) — NOT '\n'.
+   * Inside <pre>, newlines are literal whitespace. Since .code-line uses
+   * display: block, joining with '\n' produces double line spacing. */
+  code.innerHTML = wrapped.join('');
+  pre.style.counterReset = 'line ' + (startLine - 1);
+});
+
+/* GitHub reference tooltips — show title and state on hover for #N links.
+ * Links must have class="gh-ref" and data-title set by the generator. */
+document.querySelectorAll('a.gh-ref[data-title]').forEach(function(link) {
+  var tip = null;
+
+  link.addEventListener('mouseenter', function() {
+    if (tip) return;
+    tip = document.createElement('div');
+    tip.className = 'gh-tooltip';
+
+    var state = link.getAttribute('data-state') || '';
+    var type = link.getAttribute('data-type') || 'issue';
+    var label = state.charAt(0).toUpperCase() + state.slice(1).toLowerCase();
+
+    var pill = document.createElement('span');
+    pill.className = 'gh-tooltip-state gh-state-' + state;
+    pill.textContent = label + (type === 'pr' ? ' PR' : '');
+
+    var title = document.createElement('span');
+    title.className = 'gh-tooltip-title';
+    title.textContent = link.getAttribute('data-title');
+
+    tip.appendChild(pill);
+    tip.appendChild(title);
+    document.body.appendChild(tip);
+
+    var rect = link.getBoundingClientRect();
+    var tw = tip.offsetWidth;
+    var th = tip.offsetHeight;
+    var left = rect.left + window.scrollX;
+    var top = rect.top + window.scrollY - th - 8;
+
+    if (left + tw > window.innerWidth - 12) left = window.innerWidth - tw - 12;
+    if (left < 4) left = 4;
+    if (top < window.scrollY + 4) top = rect.bottom + window.scrollY + 8;
+
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    tip.style.opacity = '1';
+  });
+
+  link.addEventListener('mouseleave', function() {
+    if (tip) { tip.remove(); tip = null; }
+  });
+});
+
+  </script>
+</body>
+</html>
