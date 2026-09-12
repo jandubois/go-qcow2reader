@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deep Review: 20260912-143003-pr-77</title>
+  <style>
+code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}
+  </style>
+  <style>
+/* Deep Review — canonical stylesheet
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Edit this file to change the look of all future reviews.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f8f9fb;
+  margin: 0;
+  padding: 2rem 1rem;
+}
+main { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.6rem; margin-bottom: 0.5rem; color: #111827; }
+h2 { font-size: 1.35rem; margin-top: 2.5rem; margin-bottom: 1rem; color: #111827; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.4rem; }
+h3 { font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+hr { border: none; border-top: 2px solid #e5e7eb; margin: 2rem 0; }
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace; font-size: 0.85em; background: #f3f4f6; padding: 0.15em 0.35em; border-radius: 4px; }
+
+/* Code blocks — override Prism defaults */
+pre { margin: 0 !important; border-radius: 0 0 8px 8px !important; }
+pre[class*="language-"] { font-size: 0.78rem; line-height: 1.3; }
+pre code { background: none; padding: 0; }
+
+/* Report metadata table */
+.meta-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+.meta-table td { padding: 0.35rem 0.6rem; border: 1px solid #e5e7eb; vertical-align: top; }
+.meta-table td:first-child { font-weight: 600; width: 140px; background: #f9fafb; white-space: nowrap; }
+
+/* Cards — every section and finding lives in a card */
+.card { border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1.2rem; }
+.card-neutral { background: #f1f3f5; border: 1px solid #d5d9e0; }
+.card-critical { background: #ffeef0; border: 1px solid #f5c6cb; }
+.card-important { background: #fff0e0; border: 1px solid #f5d9a8; }
+.card-suggestion { background: #f0f6ff; border: 1px solid #c7d9f5; }
+.card-design { background: #f0faf4; border: 1px solid #b7e4c7; }
+
+/* Severity section headings — colored to match their cards */
+.section-critical { color: #9b1c1c; }
+.section-important { color: #92400e; }
+.section-suggestion { color: #1e40af; }
+.section-design { color: #065f46; }
+
+/* Agent attribution pills */
+.pill { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.15em 0.55em; border-radius: 999px; margin-right: 0.3em; vertical-align: middle; letter-spacing: 0.01em; }
+.pill-claude { background: #e9d5ff; color: #6b21a8; }
+.pill-codex { background: #d1fae5; color: #065f46; }
+.pill-gemini { background: #ffe4e6; color: #9f1239; }
+.pill-qwen { background: #fed7aa; color: #9a3412; }
+.pill-gemma { background: #fef9c3; color: #854d0e; }
+.pill-glm { background: #cffafe; color: #155e75; }
+
+/* Finding titles */
+.finding-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; line-height: 1.4; }
+.finding-num { font-weight: 800; }
+
+/* Code file header — dark bar above each source code block.
+ * The filename is a GitHub permalink to the displayed line range.
+ * Text color is light gray (#adbac7) for the bar, green (#7ee787)
+ * for the hyperlink — matching GitHub's dark-mode file header. */
+.code-file-header { background: #2d333b; color: #adbac7; font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace; font-size: 0.75rem; padding: 0.4rem 0.9rem; border-radius: 8px 8px 0 0; margin-top: 0.8rem; }
+.code-file-header a { color: #7ee787; }
+.code-file-header a:hover { text-decoration: underline; }
+
+/* Line numbers (CSS counters) and line highlighting */
+.code-line { display: block; }
+.code-line::before {
+  content: counter(line);
+  counter-increment: line;
+  display: inline-block;
+  width: 3em;
+  margin-right: 0.8em;
+  padding-right: 0.5em;
+  text-align: right;
+  color: #636e7b;
+  border-right: 1px solid #3d4556;
+  user-select: none;
+}
+.line-hl { background: rgba(255, 199, 0, 0.18); }
+
+/* Pilcrow anchor links — hidden until parent is hovered */
+.pilcrow { color: #d1d5db; text-decoration: none; font-weight: 400; margin-left: 0.4em; opacity: 0; transition: opacity 0.15s; }
+h2:hover .pilcrow, h3:hover .pilcrow, .finding-title:hover .pilcrow { opacity: 1; }
+.pilcrow:hover { color: #6b7280; text-decoration: none; }
+
+/* Tables written directly in a section body. parseTable classes only the
+ * Retro and Summary tables, so every other one arrives unclassed. */
+table:not([class]) { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.9rem; }
+table:not([class]) th, table:not([class]) td { padding: 0.45rem 0.7rem; border: 1px solid #e5e7eb; text-align: left; vertical-align: top; }
+table:not([class]) th { background: #f3f4f6; font-weight: 600; }
+table:not([class]) tr:nth-child(even) { background: #f9fafb; }
+/* A long path or job name offers no break of its own, so one cell can push
+ * the whole page into a horizontal scroll. Let those tokens wrap. */
+table:not([class]) code { overflow-wrap: anywhere; }
+
+/* Collapsible folds, for the bulk detail a report keeps out of the way */
+details { margin: 0.8rem 0; }
+summary { cursor: pointer; font-weight: 600; }
+
+/* Agent retro summary table */
+.retro-table { width: 100%; border-collapse: collapse; margin-top: 0.8rem; font-size: 0.9rem; table-layout: fixed; }
+.retro-table th, .retro-table td { padding: 0.45rem 0.7rem; border: 1px solid #e5e7eb; text-align: left; }
+.retro-table th { background: #f3f4f6; font-weight: 600; }
+.retro-table tr:nth-child(even) { background: #f9fafb; }
+
+/* Supply-chain Summary table — first column gets breathing room,
+ * numeric middle columns center, header keeps its label on one line. */
+.summary-table { width: 100%; border-collapse: collapse; margin: 0.4rem 0 0.8rem; font-size: 0.92rem; }
+.summary-table th, .summary-table td {
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #d5d9e0;
+  vertical-align: top;
+  text-align: left;
+}
+.summary-table th { background: rgba(255, 255, 255, 0.65); font-weight: 600; white-space: nowrap; }
+.summary-table td:first-child { min-width: 11rem; white-space: nowrap; }
+.summary-table th:not(:first-child):not(:last-child),
+.summary-table td:not(:first-child):not(:last-child) { text-align: center; }
+
+/* Lists and paragraphs inside cards */
+.card ul, .card ol { margin: 0.4rem 0; padding-left: 1.5rem; }
+.card li { margin-bottom: 0.3rem; }
+.card p { margin: 0.5rem 0; }
+.card p:first-child { margin-top: 0; }
+
+/* Supply-chain issue rows — used by issueList for bullets that
+ * uniformly start with a `file:line` reference. The location renders
+ * in a dark bar above the description so the eye picks up the path
+ * separately from the prose. */
+.issue-list { margin: 0.6rem 0; }
+.issue-row {
+  margin-bottom: 0.7rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.55);
+}
+.issue-loc {
+  background: #2d333b;
+  color: #adbac7;
+  padding: 0.3rem 0.7rem;
+  font-family: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+}
+.issue-loc a { color: #7ee787; text-decoration: none; }
+.issue-loc a:hover { text-decoration: underline; }
+.issue-loc code { background: none; padding: 0; color: inherit; font-size: 1em; }
+.issue-desc { padding: 0.55rem 0.8rem; }
+.issue-desc code { font-size: 0.85em; }
+
+/* Verdict highlight in metadata table */
+.verdict { font-weight: 700; }
+
+/* GitHub reference tooltips — shown on hover for #N links */
+.gh-tooltip {
+  position: absolute;
+  background: #1f2328;
+  color: #e6edf3;
+  padding: 0.55em 0.75em;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  max-width: 380px;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.28);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.gh-tooltip-state {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15em 0.5em;
+  border-radius: 999px;
+  margin-right: 0.4em;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+.gh-state-open { background: #238636; color: #fff; }
+.gh-state-closed { background: #848d97; color: #fff; }
+.gh-state-merged { background: #8957e5; color: #fff; }
+.gh-tooltip-title { vertical-align: baseline; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  body { padding: 1rem 0.5rem; }
+  .card { padding: 0.9rem 1rem; }
+  pre code { font-size: 0.72rem; }
+}
+
+/* Reproducers and patches, collapsed so a long block keeps the next finding on screen */
+details.fold { margin: 0.8rem 0; border: 1px solid #d0d7de; border-radius: 8px; overflow: hidden; }
+details.fold > summary { cursor: pointer; padding: 0.45rem 0.9rem; font-size: 0.8rem; font-weight: 600; color: #57606a; background: #f6f8fa; user-select: none; }
+details.fold > summary:hover { background: #eef1f4; }
+details.fold[open] > summary { border-bottom: 1px solid #d0d7de; }
+details.fold pre { border-radius: 0 !important; }
+details.fold .code-file-header { margin-top: 0; border-radius: 0; }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Deep Review: 20260912-143003-pr-77</h1>
+
+    <table class="meta-table">
+      <tr><td>Date</td><td>2026-09-12 14:30</td></tr>
+      <tr><td>Repo</td><td><a href="https://github.com/lima-vm/go-qcow2reader">lima-vm/go-qcow2reader</a></td></tr>
+      <tr><td>Round</td><td>1 (of PR 77)</td></tr>
+      <tr><td>Author</td><td><a href="https://github.com/AkihiroSuda">@AkihiroSuda</a></td></tr>
+      <tr><td>PR</td><td><a href="https://github.com/lima-vm/go-qcow2reader/pull/77" class="gh-ref" data-title="Add conversion to VHDX" data-state="open" data-type="pr">#77</a> — Add conversion to VHDX</td></tr>
+      <tr><td>Branch</td><td><code>vhdx</code></td></tr>
+      <tr><td>Commits</td><td><a href="https://github.com/lima-vm/go-qcow2reader/commit/65fefc6"><code>65fefc6</code></a> Add conversion to VHDX</td></tr>
+      <tr><td>Review SHA</td><td><a href="https://github.com/lima-vm/go-qcow2reader/commit/65fefc6ca9bd636984526f3bbb26c1a0e527e858"><code>65fefc6ca9bd636984526f3bbb26c1a0e527e858</code></a></td></tr>
+      <tr><td>Reviewers</td><td><span class="pill pill-claude">Claude Opus 5</span> (effort: xhigh), <span class="pill pill-codex">Codex GPT 5.6 Sol</span> (effort: xhigh), <span class="pill pill-gemini">Gemini 3.1 Pro</span> (effort: default), <span class="pill pill-gemini">Gemini 3.5 Flash</span> (effort: default)</td></tr>
+      <tr><td>Verdict</td><td><span class="verdict">Merge with fixes</span> &mdash; the encoding holds up; the README example, the CLI&#39;s option check, the tests and two comments need changes first.</td></tr>
+      <tr><td>Wall-clock time</td><td><code>51 min 17 s</code></td></tr>
+    </table>
+
+    <hr>
+
+    <hr>
+    <h2 id="executive-summary">Executive Summary <a href="#executive-summary" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>PR 77 adds a dynamic VHDX writer and a <code>convert -O vhdx</code> option. The encoding holds up: qemu-img reads the output back identical to the source, CI passes at the review SHA, and a reviewer booted a converted image under Windows HCS. Five Important findings remain. The README example finalizes a failed conversion, invalid conversion options still destroy an existing target, two writer paths have no test, and two comments misstate hole behavior and the BAT size.</p>
+    <p>Four reviewers ran against <a href="https://github.com/lima-vm/go-qcow2reader/commit/65fefc6"><code>65fefc6</code></a>. Codex&#39;s first launch failed on an expired login and ran again after re-authentication. Every finding below was checked against the code, and each Important one carries a reproducer run from this report at the review SHA, with its fix applied and the reproducer run again. Copilot&#39;s two comments on an earlier revision are both resolved here: the CLI validates the output format and block size before <code>os.Create</code>, and the <code>Writer</code> doc says a block is never deallocated.</p>
+    </div>
+    <hr>
+    <h2 id="critical-issues" class="section-critical">Critical Issues <a href="#critical-issues" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-critical">
+    <p>None.</p>
+    </div>
+    <hr>
+    <h2 id="important-issues" class="section-important">Important Issues <a href="#important-issues" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-important" data-file="README.md">
+      <div class="finding-title" id="I1">
+        <span class="finding-num">I1.</span> The README example finalizes a failed conversion as a valid VHDX <span class="pill pill-codex">Codex GPT 5.6 Sol</span><a href="#I1" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/README.md#L20-L31">README.md</a></div>
+      <pre data-start="20" data-line="25-26"><code class="language-go">[VHDX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-vhdx/83e061f8-f6e2-4de1-91bd-5d518a43d477) image:
+```go
+f, _ := os.Create(&quot;a.vhdx&quot;)
+defer f.Close()
+w, _ := vhdx.NewWriter(f, img.Size(), vhdx.WriterOptions{})
+_ = convert.Convert(w, img, convert.Options{})
+_ = w.Close()
+```
+
+## Limitations
+
+The following features are not supported yet:</code></pre>
+    <p>The example discards the conversion error and calls <code>Close</code> anyway. <code>Close</code> writes the BAT and then the file type identifier (<a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L452-L454"><code>image/vhdx/writer.go:452-454</code></a>), and writing the identifier last is what keeps an interrupted conversion from being detected as a VHDX. Code that follows the example turns a failed conversion into an image qemu-img opens without complaint, with the unconverted half reading as zeros. The README&#39;s first example also drops errors, but there a missed error ends in a nil-pointer panic; here it ends in a quietly wrong disk.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L447-L459">image/vhdx/writer.go</a></div>
+      <pre data-start="447" data-line="452-454"><code class="language-go">		if err := wr.writeAll([]byte{0}, wr.next-1); err != nil {
+			return err
+		}
+	}
+
+	// The file type identifier is written last, so that a file which was not
+	// completely written is not recognized as a VHDX image.
+	return wr.writeAll(wr.fileTypeIdentifier(), 0)
+}
+
+func (wr *Writer) writeAll(b []byte, off int64) error {
+	n, err := wr.w.WriteAt(b, off)
+	if err != nil {</code></pre>
+      <details class="fold">
+        <summary>Reproducer</summary>
+      <pre><code class="language-go">// Save as image/vhdx/readme_probe_test.go; run: go test -count=1 -run TestProbeFailedConversion -v ./image/vhdx/
+package vhdx_test
+
+import (
+	&quot;errors&quot;
+	&quot;os&quot;
+	&quot;os/exec&quot;
+	&quot;path/filepath&quot;
+	&quot;strings&quot;
+	&quot;testing&quot;
+
+	&quot;github.com/lima-vm/go-qcow2reader/convert&quot;
+	&quot;github.com/lima-vm/go-qcow2reader/image&quot;
+	&quot;github.com/lima-vm/go-qcow2reader/image/vhdx&quot;
+)
+
+// failingImage reads as 0x5a bytes below failAt and fails at or beyond it.
+type failingImage struct{ size, failAt int64 }
+
+func (i failingImage) ReadAt(p []byte, off int64) (int, error) {
+	if off &gt;= i.failAt {
+		return 0, errors.New(&quot;injected source failure&quot;)
+	}
+	for j := range p {
+		p[j] = 0x5a
+	}
+	return len(p), nil
+}
+func (i failingImage) Close() error { return nil }
+func (i failingImage) Extent(start, length int64) (image.Extent, error) {
+	return image.Extent{Start: start, Length: length, Allocated: true}, nil
+}
+func (i failingImage) Type() image.Type { return &quot;fake&quot; }
+func (i failingImage) Size() int64      { return i.size }
+func (i failingImage) Readable() error  { return nil }
+
+// TestProbeFailedConversion follows the README example with a source that
+// fails half way, once with the final Close and once without it.
+func TestProbeFailedConversion(t *testing.T) {
+	img := failingImage{size: 64 &lt;&lt; 20, failAt: 32 &lt;&lt; 20}
+	for _, closeAfterFailure := range []bool{true, false} {
+		dst := filepath.Join(t.TempDir(), &quot;a.vhdx&quot;)
+		f, _ := os.Create(dst)
+		w, _ := vhdx.NewWriter(f, img.Size(), vhdx.WriterOptions{})
+		convertErr := convert.Convert(w, img, convert.Options{})
+		if closeAfterFailure {
+			_ = w.Close()
+		}
+		_ = f.Close()
+		out, _ := exec.Command(&quot;qemu-img&quot;, &quot;info&quot;, dst).CombinedOutput()
+		format := &quot;?&quot;
+		for _, line := range strings.Split(string(out), &quot;\n&quot;) {
+			if v, ok := strings.CutPrefix(line, &quot;file format: &quot;); ok {
+				format = v
+			}
+		}
+		t.Logf(&quot;Close after failure=%v: Convert returned %q; qemu-img sees format %s&quot;, closeAfterFailure, convertErr, format)
+		if format == &quot;vhdx&quot; {
+			raw := dst + &quot;.raw&quot;
+			_ = exec.Command(&quot;qemu-img&quot;, &quot;convert&quot;, &quot;-O&quot;, &quot;raw&quot;, dst, raw).Run()
+			b, _ := os.ReadFile(raw)
+			t.Logf(&quot;  image byte at 0: %#x, at 48 MiB: %#x (source has 0x5a at both)&quot;, b[0], b[48&lt;&lt;20])
+		}
+	}
+}</code></pre>
+      <pre><code class="language-text">$ go test -count=1 -run TestProbeFailedConversion -v ./image/vhdx/
+=== RUN   TestProbeFailedConversion
+    readme_probe_test.go:57: Close after failure=true: Convert returned &quot;injected source failure&quot;; qemu-img sees format vhdx
+    readme_probe_test.go:62:   image byte at 0: 0x5a, at 48 MiB: 0x0 (source has 0x5a at both)
+    readme_probe_test.go:57: Close after failure=false: Convert returned &quot;injected source failure&quot;; qemu-img sees format raw
+--- PASS: TestProbeFailedConversion (0.14s)
+PASS
+ok  	github.com/lima-vm/go-qcow2reader/image/vhdx	0.467s</code></pre>
+      </details>
+    <p>The second run leaves <code>Close</code> out, as the fixed example does, and qemu-img no longer recognizes the file as a VHDX.</p>
+    <p>Fix: return on a conversion error and close the writer only after success.</p>
+      <details class="fold">
+        <summary>Patch</summary>
+      <pre><code class="language-diff">diff --git a/README.md b/README.md
+index 1569044..38f96b0 100644
+--- a/README.md
++++ b/README.md
+@@ -22,8 +22,10 @@ skipping unallocated and zero extents. The target can be a raw file, or a
+ f, _ := os.Create(&quot;a.vhdx&quot;)
+ defer f.Close()
+ w, _ := vhdx.NewWriter(f, img.Size(), vhdx.WriterOptions{})
+-_ = convert.Convert(w, img, convert.Options{})
+-_ = w.Close()
++if err := convert.Convert(w, img, convert.Options{}); err != nil {
++	return err // leave w unclosed, so the partial image is not finalized
++}
++return w.Close()
+ ```
+ 
+ ## Limitations</code></pre>
+      </details>
+    </div>
+    <div class="card card-important" data-file="cmd/go-qcow2reader-example/convert.go">
+      <div class="finding-title" id="I2">
+        <span class="finding-num">I2.</span> Invalid conversion options still destroy an existing target <span class="pill pill-codex">Codex GPT 5.6 Sol</span><a href="#I2" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/convert.go#L69-L80">cmd/go-qcow2reader-example/convert.go</a></div>
+      <pre data-start="69" data-line="74-75"><code class="language-go">	if err != nil {
+		return err
+	}
+	defer img.Close()
+
+	// Validate the output format and its options before creating the target, so
+	// that an invalid option does not truncate an existing file.
+	outputType := image.Type(outputFormat)
+	writerOptions := vhdx.WriterOptions{BlockSize: blockSize}
+	switch outputType {
+	case raw.Type:
+		if blockSize != 0 {</code></pre>
+    <p>The new block checks only the output format and <code>-block-size</code>. The <code>-workers</code>, <code>-segment-size</code> and <code>-buffer-size</code> values reach <code>Options.Validate</code> only inside <code>convert.Convert</code> (line 120), after <code>os.Create</code> has truncated the target (line 91) and <code>NewWriter</code> has extended it to 4 MiB of headers and metadata (line 107). So <code>-workers=-1</code> prints an error and leaves a partial image where the existing file was, which is what the comment says cannot happen. The merge-base code does the same for raw output (create, truncate, then convert); the comment&#39;s promise is new.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/convert.go#L86-L125">cmd/go-qcow2reader-example/convert.go</a></div>
+      <pre data-start="86" data-line="91-120"><code class="language-go">		}
+	default:
+		return fmt.Errorf(&quot;unsupported output format %q&quot;, outputFormat)
+	}
+
+	t, err := os.Create(target)
+	if err != nil {
+		return err
+	}
+	defer t.Close()
+
+	var (
+		wa     io.WriterAt = t
+		finish func() error
+	)
+	switch outputType {
+	case raw.Type:
+		if err := t.Truncate(img.Size()); err != nil {
+			return err
+		}
+	case vhdx.Type:
+		w, err := vhdx.NewWriter(t, img.Size(), writerOptions)
+		if err != nil {
+			return err
+		}
+		wa = w
+		finish = w.Close
+	}
+
+	bar := newProgressBar(img.Size())
+	bar.Start()
+	defer bar.Finish()
+	options.Progress = bar
+
+	if err := convert.Convert(wa, img, options); err != nil {
+		return err
+	}
+
+	if finish != nil {
+		if err := finish(); err != nil {</code></pre>
+      <details class="fold">
+        <summary>Reproducer</summary>
+      <pre><code class="language-bash"># Save as probe-invalid-option.sh; run from the repo root: bash probe-invalid-option.sh
+d=$(mktemp -d)
+(cd cmd/go-qcow2reader-example &amp;&amp; go build -o &quot;$d/example&quot; .) || exit 1
+qemu-img create -q -f qcow2 &quot;$d/src.qcow2&quot; 64M
+for args in &quot;-O vhdx -block-size=3145728&quot; &quot;-O vhdx -workers=-1&quot; &quot;-O vhdx -segment-size=-1&quot; &quot;-workers=-1&quot;; do
+	printf &#39;keep me\n&#39; &gt;&quot;$d/existing&quot;
+	# shellcheck disable=SC2086
+	err=$(&quot;$d/example&quot; convert $args &quot;$d/src.qcow2&quot; &quot;$d/existing&quot; 2&gt;&amp;1 | grep -o &quot;ERROR: .*&quot;)
+	echo &quot;convert $args: ${err#ERROR: }; target now $(wc -c &lt;&quot;$d/existing&quot; | tr -d &#39; &#39;) bytes&quot;
+done
+rm -rf &quot;$d&quot;</code></pre>
+      <pre><code class="language-text">$ bash probe-invalid-option.sh
+convert -O vhdx -block-size=3145728: block size 3145728 must be a power of two; target now 8 bytes
+convert -O vhdx -workers=-1: number of workers must be positive; target now 4194304 bytes
+convert -O vhdx -segment-size=-1: segment size must be positive; target now 4194304 bytes
+convert -workers=-1: number of workers must be positive; target now 67108864 bytes</code></pre>
+      </details>
+    <p>With the patch applied, all four runs leave the 8-byte target intact.</p>
+    <p>Fix: call <code>options.Validate()</code> in the block that runs before <code>os.Create</code>, and widen the comment to cover it.</p>
+      <details class="fold">
+        <summary>Patch</summary>
+      <pre><code class="language-diff">diff --git a/cmd/go-qcow2reader-example/convert.go b/cmd/go-qcow2reader-example/convert.go
+index 9b54a39..b6d0962 100644
+--- a/cmd/go-qcow2reader-example/convert.go
++++ b/cmd/go-qcow2reader-example/convert.go
+@@ -71,8 +71,11 @@ func cmdConvert(args []string) error {
+ 	}
+ 	defer img.Close()
+ 
+-	// Validate the output format and its options before creating the target, so
+-	// that an invalid option does not truncate an existing file.
++	// Validate the options before creating the target, so that an invalid option
++	// does not truncate an existing file.
++	if err := options.Validate(); err != nil {
++		return err
++	}
+ 	outputType := image.Type(outputFormat)
+ 	writerOptions := vhdx.WriterOptions{BlockSize: blockSize}
+ 	switch outputType {</code></pre>
+      </details>
+    </div>
+    <div class="card card-important" data-file="image/vhdx/writer.go">
+      <div class="finding-title" id="I3">
+        <span class="finding-num">I3.</span> No test reaches the allocation re-check or a target without <code>Truncate</code> <span class="pill pill-claude">Claude Opus 5</span><a href="#I3" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L395-L407">image/vhdx/writer.go</a></div>
+      <pre data-start="395" data-line="400-402"><code class="language-go">	wr.mu.Lock()
+	defer wr.mu.Unlock()
+	if wr.closed {
+		return 0, os.ErrClosed
+	}
+	if fileOff := wr.blocks[block]; fileOff != 0 {
+		return fileOff, nil
+	}
+	// Extend the file with a hole for the new block, so that the parts of the
+	// block that are never written are not allocated in the file system.
+	if wr.truncate != nil {
+		if err := wr.truncate(wr.next + wr.blockSize); err != nil {
+			return 0, err</code></pre>
+    <p>This re-check under the lock is all that stops two goroutines from allocating one block twice; without it, one goroutine&#39;s data lands in an orphaned block and is lost with no error. The tests never make two workers share a block, since they convert with the default 32 MiB segments and blocks of at most 16 MiB. Production can: disks over 32 TiB get 64 MiB blocks, and the CLI takes <code>-block-size</code> and <code>-segment-size</code>. Every test also passes an <code>*os.File</code>, so <code>Close</code>&#39;s fallback for targets without <code>Truncate</code> (lines 446-450) never runs. The third mutation below shows the suite does catch a broken per-block <code>Truncate</code>.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L441-L455">image/vhdx/writer.go</a></div>
+      <pre data-start="441" data-line="446-450"><code class="language-go">	// Make sure that the file extends to the end of the last allocated block, or
+	// to the end of the BAT region if no block was allocated. If the file could
+	// not be extended by truncation, and unless the last byte was written, it
+	// must read as zero, so writing a single zero byte extends the file while
+	// keeping it sparse.
+	if wr.truncate == nil &amp;&amp; wr.end &lt; wr.next {
+		if err := wr.writeAll([]byte{0}, wr.next-1); err != nil {
+			return err
+		}
+	}
+
+	// The file type identifier is written last, so that a file which was not
+	// completely written is not recognized as a VHDX image.
+	return wr.writeAll(wr.fileTypeIdentifier(), 0)
+}</code></pre>
+      <details class="fold">
+        <summary>Reproducer</summary>
+      <pre><code class="language-bash"># Save as probe-mutations.sh; run from the repo root at 65fefc6: bash probe-mutations.sh
+f=image/vhdx/writer.go
+git diff --quiet -- &quot;$f&quot; || { echo &quot;commit or stash your changes to $f first&quot;; exit 1; }
+try() {
+	if git diff --quiet -- &quot;$f&quot;; then echo &quot;$1: mutation did not apply&quot;; return; fi
+	if go test -count=1 ./image/vhdx/ &gt;/dev/null 2&gt;&amp;1; then echo &quot;$1: suite passes&quot;; else echo &quot;$1: suite fails&quot;; fi
+	git checkout -- &quot;$f&quot;
+}
+perl -0pi -e &#39;s/\tif fileOff := wr\.blocks\[block\]; fileOff != 0 \{\n\t\treturn fileOff, nil\n\t\}\n//&#39; &quot;$f&quot;
+try &quot;re-check under the lock (lines 400-402) removed&quot;
+perl -0pi -e &#39;s/\tif wr\.truncate == nil &amp;&amp; wr\.end &lt; wr\.next \{\n.*?\n\t\}\n//s&#39; &quot;$f&quot;
+try &quot;zero-byte write in Close (lines 446-450) removed&quot;
+perl -0pi -e &#39;s/\tif wr\.truncate != nil \{\n\t\tif err := wr\.truncate\(wr\.next \+ wr\.blockSize\); err != nil \{\n.*?\n\t\}\n//s&#39; &quot;$f&quot;
+try &quot;per-block Truncate (lines 405-409) removed&quot;</code></pre>
+      <pre><code class="language-text">$ bash probe-mutations.sh
+re-check under the lock (lines 400-402) removed: suite passes
+zero-byte write in Close (lines 446-450) removed: suite passes
+per-block Truncate (lines 405-409) removed: suite fails</code></pre>
+      </details>
+    <p>With the new test, all three mutations fail the suite; the re-check mutation needs the race and failed 10 of 20 runs with <code>Truncate</code>, 11 of 20 without.</p>
+    <p>Fix: add a concurrent-writes test for both kinds of target.</p>
+      <details class="fold">
+        <summary>Patch</summary>
+      <pre><code class="language-diff">diff --git a/image/vhdx/writer_test.go b/image/vhdx/writer_test.go
+index 3c47a1b..e1a5a9b 100644
+--- a/image/vhdx/writer_test.go
++++ b/image/vhdx/writer_test.go
+@@ -3,8 +3,10 @@ package vhdx_test
+ import (
+ 	&quot;bytes&quot;
+ 	&quot;errors&quot;
++	&quot;io&quot;
+ 	&quot;os&quot;
+ 	&quot;path/filepath&quot;
++	&quot;sync&quot;
+ 	&quot;testing&quot;
+ 
+ 	&quot;github.com/lima-vm/go-qcow2reader&quot;
+@@ -230,6 +232,96 @@ func TestWriterWriteAt(t *testing.T) {
+ 	}
+ }
+ 
++// TestWriterConcurrentWrites writes interleaved pieces from many goroutines, so
++// that several goroutines allocate each block at once, and then allocates the
++// last block with a partial write. It runs with targets that do and do not
++// implement Truncate.
++func TestWriterConcurrentWrites(t *testing.T) {
++	const (
++		size      = 32 * MiB
++		blockSize = 4 * MiB
++		piece     = 256 * KiB
++		workers   = 32
++	)
++	for _, tc := range []struct {
++		name   string
++		target func(*os.File) io.WriterAt
++	}{
++		{&quot;with Truncate&quot;, func(f *os.File) io.WriterAt { return f }},
++		{&quot;without Truncate&quot;, func(f *os.File) io.WriterAt { return struct{ io.WriterAt }{f} }},
++	} {
++		t.Run(tc.name, func(t *testing.T) {
++			dir := t.TempDir()
++			dst := filepath.Join(dir, &quot;dst.vhdx&quot;)
++			f, err := os.Create(dst)
++			if err != nil {
++				t.Fatal(err)
++			}
++			defer f.Close() //nolint:errcheck
++			w, err := vhdx.NewWriter(tc.target(f), size, vhdx.WriterOptions{BlockSize: blockSize})
++			if err != nil {
++				t.Fatal(err)
++			}
++
++			expected := make([]byte, size)
++			start := make(chan struct{})
++			var wg sync.WaitGroup
++			for i := range int64(workers) {
++				wg.Add(1)
++				go func() {
++					defer wg.Done()
++					&lt;-start
++					for off := i * piece; off &lt; size-blockSize; off += workers * piece {
++						// Only the last byte is non-zero, so that WriteAt scans the
++						// whole piece before it takes the lock, and the goroutines
++						// contend for the allocation.
++						data := make([]byte, piece)
++						data[piece-1] = byte(off/piece + 1)
++						copy(expected[off:], data)
++						if _, err := w.WriteAt(data, off); err != nil {
++							t.Error(err)
++							return
++						}
++					}
++				}()
++			}
++			close(start)
++			wg.Wait()
++			// Allocate the last block after all others, with a partial write.
++			last := bytes.Repeat([]byte{0xee}, int(4*KiB))
++			if _, err := w.WriteAt(last, size-blockSize); err != nil {
++				t.Fatal(err)
++			}
++			copy(expected[size-blockSize:], last)
++			if err := w.Close(); err != nil {
++				t.Fatal(err)
++			}
++			if err := f.Close(); err != nil {
++				t.Fatal(err)
++			}
++
++			st, err := os.Stat(dst)
++			if err != nil {
++				t.Fatal(err)
++			}
++			if expectedSize := payloadOffset + size; st.Size() != expectedSize {
++				t.Errorf(&quot;expected file size %d, got %d&quot;, expectedSize, st.Size())
++			}
++			raw := filepath.Join(dir, &quot;dst.raw&quot;)
++			if err := qemuimg.Convert(dst, raw, qemuimg.FormatRaw, qemuimg.CompressionNone); err != nil {
++				t.Fatal(err)
++			}
++			actual, err := os.ReadFile(raw)
++			if err != nil {
++				t.Fatal(err)
++			}
++			if !bytes.Equal(actual, expected) {
++				t.Fatal(&quot;converted image differs from the written data&quot;)
++			}
++		})
++	}
++}
++
+ func TestWriterClosed(t *testing.T) {
+ 	dst := filepath.Join(t.TempDir(), &quot;dst.vhdx&quot;)
+ 	f, err := os.Create(dst)</code></pre>
+      </details>
+    </div>
+    <div class="card card-important" data-file="image/vhdx/writer.go">
+      <div class="finding-title" id="I4">
+        <span class="finding-num">I4.</span> The stated reason for truncating is false on APFS <span class="pill pill-claude">Claude Opus 5</span><a href="#I4" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L217-L231">image/vhdx/writer.go</a></div>
+      <pre data-start="217" data-line="222-226"><code class="language-go">// A block is never deallocated: writing zeros over a block that is already
+// allocated stores the zeros in the file.
+//
+// The target must be a new empty file (or a file full of zeroes): blocks are
+// allocated at increasing offsets, and bytes within an allocated block that
+// are never written must read as zeros. If the target implements Truncate
+// (as [os.File] does), the file is extended by truncation when blocks are
+// allocated, so that the unwritten parts of the file remain holes on file
+// systems supporting sparse files, including those that do not create holes
+// for writes beyond the end of the file (e.g. APFS).
+//
+// Writer is safe for concurrent use by multiple goroutines. Close must be
+// called after all writes to write the block allocation table and finalize
+// the image; the image is not recognizable as a VHDX file before Close.
+// Writer does not close the underlying [io.WriterAt].</code></pre>
+    <p>On APFS a write past EOF leaves the same hole <code>ftruncate</code> does, and neither keeps a small gap: the probe allocates gaps of 16 MiB or less in full at fsync and leaves gaps of 32 MiB or more as holes, identically in both modes. In a run through the writer itself, a 10 GiB disk with 4 KiB written every 16 MiB gave a 644 MiB file with 512 MiB allocated with <code>Truncate</code> and 511 MiB without. The comments at lines 293-294 and 403-404 and the commit message (&quot;Unwritten parts of the file are kept as holes by extending the file with Truncate&quot;) make the same claim. Not measured on Linux or NTFS.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L288-L299">image/vhdx/writer.go</a></div>
+      <pre data-start="288" data-line="293-294"><code class="language-go">		chunkRatio: chunkRatio,
+		batLength:  batLength,
+		next:       batOffset + batLength,
+	}
+
+	// Extend the file to the end of the BAT region, so that the unwritten parts
+	// of the header section, the log, the metadata region and the BAT are holes.
+	if wr.truncate != nil {
+		if err := wr.truncate(wr.next); err != nil {
+			return nil, err
+		}
+	}</code></pre>
+      <details class="fold">
+        <summary>Reproducer</summary>
+      <pre><code class="language-python"># Save as probe_apfs_holes.py; run on macOS (APFS): python3 probe_apfs_holes.py
+import os
+import tempfile
+
+M = 1 &lt;&lt; 20
+d = tempfile.mkdtemp()
+for gap in (1 * M, 16 * M, 32 * M, 256 * M):
+    for mode in (&quot;truncate first&quot;, &quot;write past EOF&quot;):
+        p = os.path.join(d, &quot;f&quot;)
+        fd = os.open(p, os.O_RDWR | os.O_CREAT | os.O_TRUNC, 0o644)
+        os.pwrite(fd, b&quot;\x01&quot; * 4096, 0)
+        if mode == &quot;truncate first&quot;:
+            os.ftruncate(fd, 4096 + gap + 4096)
+        os.pwrite(fd, b&quot;\x01&quot; * 4096, 4096 + gap)
+        os.fsync(fd)
+        os.close(fd)
+        st = os.stat(p)
+        print(f&quot;gap {gap // M:&gt;3} MiB, {mode:14}: size {st.st_size // 1024:&gt;6} KiB, allocated {st.st_blocks * 512 // 1024:&gt;6} KiB&quot;)
+        os.remove(p)</code></pre>
+      <pre><code class="language-text">$ python3 probe_apfs_holes.py
+gap   1 MiB, truncate first: size   1032 KiB, allocated   1032 KiB
+gap   1 MiB, write past EOF: size   1032 KiB, allocated   1032 KiB
+gap  16 MiB, truncate first: size  16392 KiB, allocated  16392 KiB
+gap  16 MiB, write past EOF: size  16392 KiB, allocated  16392 KiB
+gap  32 MiB, truncate first: size  32776 KiB, allocated     24 KiB
+gap  32 MiB, write past EOF: size  32776 KiB, allocated     24 KiB
+gap 256 MiB, truncate first: size 262152 KiB, allocated     24 KiB
+gap 256 MiB, write past EOF: size 262152 KiB, allocated     24 KiB</code></pre>
+      </details>
+    <p>Fix: say what the truncation does, and drop the hole claims from all three comments and the commit message.</p>
+      <details class="fold">
+        <summary>Patch</summary>
+      <pre><code class="language-diff">diff --git a/image/vhdx/writer.go b/image/vhdx/writer.go
+index d24687b..0488c02 100644
+--- a/image/vhdx/writer.go
++++ b/image/vhdx/writer.go
+@@ -220,10 +220,8 @@ func (o *WriterOptions) Validate(size int64) error {
+ // The target must be a new empty file (or a file full of zeroes): blocks are
+ // allocated at increasing offsets, and bytes within an allocated block that
+ // are never written must read as zeros. If the target implements Truncate
+-// (as [os.File] does), the file is extended by truncation when blocks are
+-// allocated, so that the unwritten parts of the file remain holes on file
+-// systems supporting sparse files, including those that do not create holes
+-// for writes beyond the end of the file (e.g. APFS).
++// (as [os.File] does), Writer extends the file by truncation as it allocates
++// blocks; otherwise Close extends the file to the end of the last block.
+ //
+ // Writer is safe for concurrent use by multiple goroutines. Close must be
+ // called after all writes to write the block allocation table and finalize
+@@ -290,8 +288,7 @@ func NewWriter(w io.WriterAt, size int64, opts WriterOptions) (*Writer, error) {
+ 		next:       batOffset + batLength,
+ 	}
+ 
+-	// Extend the file to the end of the BAT region, so that the unwritten parts
+-	// of the header section, the log, the metadata region and the BAT are holes.
++	// Extend the file to the end of the BAT region.
+ 	if wr.truncate != nil {
+ 		if err := wr.truncate(wr.next); err != nil {
+ 			return nil, err
+@@ -400,8 +397,7 @@ func (wr *Writer) blockOffset(block int64, data []byte) (int64, error) {
+ 	if fileOff := wr.blocks[block]; fileOff != 0 {
+ 		return fileOff, nil
+ 	}
+-	// Extend the file with a hole for the new block, so that the parts of the
+-	// block that are never written are not allocated in the file system.
++	// Extend the file to the end of the new block.
+ 	if wr.truncate != nil {
+ 		if err := wr.truncate(wr.next + wr.blockSize); err != nil {
+ 			return 0, err</code></pre>
+      </details>
+    </div>
+    <div class="card card-important" data-file="image/vhdx/writer.go">
+      <div class="finding-title" id="I5">
+        <span class="finding-num">I5.</span> The <code>DefaultBlockSize</code> doc understates the BAT by 1 MiB <span class="pill pill-claude">Claude Opus 5</span> <span class="pill pill-codex">Codex GPT 5.6 Sol</span><a href="#I5" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L162-L173">image/vhdx/writer.go</a></div>
+      <pre data-start="162" data-line="167-168"><code class="language-go">	BlockSize int64
+}
+
+// DefaultBlockSize returns the default payload block size for a virtual disk
+// of the specified size: the smallest block size (1 MiB) for disks up to 1
+// TiB, doubling with every doubling of the disk size beyond that, so that the
+// block allocation table has at most 1 Mi entries (8 MiB).
+//
+// The default favors a small image over the larger block sizes used by other
+// tools (typically 8 MiB to 32 MiB), since the unwritten part of a partially
+// written block is allocated by file systems that do not support sparse
+// files, or that fill small holes.</code></pre>
+    <p>The loop at lines 175-178 caps payload-block entries at 1 Mi, but <code>NewWriter</code> adds a sector bitmap entry after every chunk (line 279) and rounds the region up to a whole MiB (line 280). A 1 TiB disk gets 1,048,831 entries and a 64 TiB disk 1,064,959, both in a 9 MiB region. The commit message repeats the bound (&quot;to keep the BAT at or under 8 MiB&quot;). The 512 GiB row shows the bound holding for a smaller disk.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L170-L183">image/vhdx/writer.go</a></div>
+      <pre data-start="170" data-line="175-178"><code class="language-go">// The default favors a small image over the larger block sizes used by other
+// tools (typically 8 MiB to 32 MiB), since the unwritten part of a partially
+// written block is allocated by file systems that do not support sparse
+// files, or that fill small holes.
+func DefaultBlockSize(size int64) int64 {
+	blockSize := MinBlockSize
+	for blockSize &lt; MaxBlockSize &amp;&amp; size &gt; blockSize&lt;&lt;20 {
+		blockSize &lt;&lt;= 1
+	}
+	return blockSize
+}
+
+// Validate validates the virtual disk size and the options, and sets default
+// option values. [NewWriter] calls it, but a caller can call it earlier to</code></pre>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L274-L285">image/vhdx/writer.go</a></div>
+      <pre data-start="274" data-line="279-280"><code class="language-go">
+	// The BAT interleaves one sector bitmap block entry after every chunkRatio
+	// payload block entries. For a dynamic image, the last entry must locate the
+	// last payload block (section 2.5).
+	chunkRatio := sectorsPerBitmapBlock * LogicalSectorSize / blockSize
+	batEntries := payloadBlocks + (payloadBlocks-1)/chunkRatio
+	batLength := (batEntries*batEntrySize + miB - 1) / miB * miB
+
+	wr := &amp;Writer{
+		w:          w,
+		truncate:   truncateFunc(w),
+		size:       size,</code></pre>
+      <details class="fold">
+        <summary>Reproducer</summary>
+      <pre><code class="language-go">// Save as image/vhdx/bat_probe_test.go; run: go test -count=1 -run TestProbeBATRegion -v ./image/vhdx/
+package vhdx_test
+
+import (
+	&quot;os&quot;
+	&quot;path/filepath&quot;
+	&quot;testing&quot;
+
+	&quot;github.com/lima-vm/go-qcow2reader/image/vhdx&quot;
+)
+
+// With no block allocated, the file ends at the end of the BAT region, which
+// starts at 3 MiB.
+func TestProbeBATRegion(t *testing.T) {
+	for _, size := range []int64{512 &lt;&lt; 30, 1 &lt;&lt; 40, 64 &lt;&lt; 40} {
+		f, err := os.Create(filepath.Join(t.TempDir(), &quot;x.vhdx&quot;))
+		if err != nil {
+			t.Fatal(err)
+		}
+		w, err := vhdx.NewWriter(f, size, vhdx.WriterOptions{})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := w.Close(); err != nil {
+			t.Fatal(err)
+		}
+		st, err := f.Stat()
+		if err != nil {
+			t.Fatal(err)
+		}
+		f.Close() //nolint:errcheck
+		t.Logf(&quot;disk %5d GiB: block size %2d MiB, BAT region %d MiB&quot;, size&gt;&gt;30, w.BlockSize()&gt;&gt;20, (st.Size()-3&lt;&lt;20)&gt;&gt;20)
+	}
+}</code></pre>
+      <pre><code class="language-text">$ go test -count=1 -run TestProbeBATRegion -v ./image/vhdx/
+=== RUN   TestProbeBATRegion
+    bat_probe_test.go:32: disk   512 GiB: block size  1 MiB, BAT region 5 MiB
+    bat_probe_test.go:32: disk  1024 GiB: block size  1 MiB, BAT region 9 MiB
+    bat_probe_test.go:32: disk 65536 GiB: block size 64 MiB, BAT region 9 MiB
+--- PASS: TestProbeBATRegion (0.04s)
+PASS
+ok  	github.com/lima-vm/go-qcow2reader/image/vhdx	0.355s</code></pre>
+      </details>
+    <p>Fix: state the bound the code keeps, and amend the commit message to match.</p>
+      <details class="fold">
+        <summary>Patch</summary>
+      <pre><code class="language-diff">diff --git a/image/vhdx/writer.go b/image/vhdx/writer.go
+index d24687b..a2aba18 100644
+--- a/image/vhdx/writer.go
++++ b/image/vhdx/writer.go
+@@ -165,7 +165,7 @@ type WriterOptions struct {
+ // DefaultBlockSize returns the default payload block size for a virtual disk
+ // of the specified size: the smallest block size (1 MiB) for disks up to 1
+ // TiB, doubling with every doubling of the disk size beyond that, so that the
+-// block allocation table has at most 1 Mi entries (8 MiB).
++// block allocation table maps at most 1 Mi payload blocks and fits in 9 MiB.
+ //
+ // The default favors a small image over the larger block sizes used by other
+ // tools (typically 8 MiB to 32 MiB), since the unwritten part of a partially</code></pre>
+      </details>
+    </div>
+    <hr>
+    <h2 id="suggestions" class="section-suggestion">Suggestions <a href="#suggestions" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-suggestion" data-file="cmd/go-qcow2reader-example/convert.go">
+      <div class="finding-title" id="S1">
+        <span class="finding-num">S1.</span> <code>convert -h</code> hides the new <code>-O</code> and <code>-block-size</code> flags <span class="pill pill-claude">Claude Opus 5</span> <span class="pill pill-codex">Codex GPT 5.6 Sol</span><a href="#S1" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/convert.go#L28-L39">cmd/go-qcow2reader-example/convert.go</a></div>
+      <pre data-start="28" data-line="33-34"><code class="language-go">		options      convert.Options
+	)
+
+	fs := flag.NewFlagSet(&quot;convert&quot;, flag.ExitOnError)
+	fs.Usage = func() {
+		fmt.Fprintf(flag.CommandLine.Output(), &quot;Usage: %s convert [OPTIONS...] SOURCE TARGET\n&quot;, os.Args[0])
+		flag.PrintDefaults()
+	}
+	fs.BoolVar(&amp;debug, &quot;debug&quot;, false, &quot;enable printing debug messages&quot;)
+	fs.StringVar(&amp;outputFormat, &quot;O&quot;, string(raw.Type), &quot;output format (raw or vhdx)&quot;)
+	fs.Int64Var(&amp;blockSize, &quot;block-size&quot;, 0, &quot;vhdx block size in bytes (0 = auto)&quot;)
+	fs.Int64Var(&amp;options.SegmentSize, &quot;segment-size&quot;, convert.SegmentSize, &quot;worker segment size in bytes&quot;)</code></pre>
+    <p><code>flag.PrintDefaults()</code> prints the global flag set, which is empty, so <code>convert -h</code> prints only the usage line (run). The callback predates this PR (<a href="https://github.com/lima-vm/go-qcow2reader/commit/46183d3f"><code>46183d3f</code></a>), and <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/read.go#L29"><code>read.go:29</code></a> and <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/map.go#L27"><code>map.go:27</code></a> have the same bug, while <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/info.go#L26"><code>info.go:26</code></a> gets it right. It matters more now that <code>-O vhdx</code> exists only in the flag set nobody prints.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/read.go#L24-L34">cmd/go-qcow2reader-example/read.go</a></div>
+      <pre data-start="24" data-line="29"><code class="language-go">	)
+
+	fs := flag.NewFlagSet(&quot;read&quot;, flag.ExitOnError)
+	fs.Usage = func() {
+		fmt.Fprintf(fs.Output(), &quot;Usage: %s read [OPTIONS...] FILE\n&quot;, os.Args[0])
+		flag.PrintDefaults()
+	}
+	fs.BoolVar(&amp;debug, &quot;debug&quot;, false, &quot;enable printing debug messages&quot;)
+	fs.IntVar(&amp;bufferSize, &quot;buffer-size&quot;, 2*1024*1024, &quot;buffer size&quot;)
+	fs.Int64Var(&amp;offset, &quot;offset&quot;, 0, &quot;offset to read&quot;)
+	fs.Int64Var(&amp;length, &quot;length&quot;, -1, &quot;length to read&quot;)</code></pre>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/map.go#L22-L32">cmd/go-qcow2reader-example/map.go</a></div>
+      <pre data-start="22" data-line="27"><code class="language-go">	)
+
+	fs := flag.NewFlagSet(&quot;map&quot;, flag.ExitOnError)
+	fs.Usage = func() {
+		fmt.Fprintf(fs.Output(), &quot;Usage: %s map [OPTIONS...] FILE\n&quot;, os.Args[0])
+		flag.PrintDefaults()
+	}
+	fs.BoolVar(&amp;debug, &quot;debug&quot;, false, &quot;enable printing debug messages&quot;)
+	if err := fs.Parse(args); err != nil {
+		return err
+	}</code></pre>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/info.go#L21-L31">cmd/go-qcow2reader-example/info.go</a></div>
+      <pre data-start="21" data-line="26"><code class="language-go">	)
+
+	fs := flag.NewFlagSet(&quot;info&quot;, flag.ExitOnError)
+	fs.Usage = func() {
+		fmt.Fprintf(fs.Output(), &quot;Usage: %s info [OPTIONS...] FILE\n&quot;, os.Args[0])
+		fs.PrintDefaults()
+	}
+	fs.BoolVar(&amp;debug, &quot;debug&quot;, false, &quot;enable printing debug messages&quot;)
+	if err := fs.Parse(args); err != nil {
+		return err
+	}</code></pre>
+    <p>Fix: print <code>fs</code>&#39;s defaults to <code>fs.Output()</code>, here and in <code>read.go</code> and <code>map.go</code>.</p>
+      <pre><code class="language-diff">-		fmt.Fprintf(flag.CommandLine.Output(), &quot;Usage: %s convert [OPTIONS...] SOURCE TARGET\n&quot;, os.Args[0])
+-		flag.PrintDefaults()
++		fmt.Fprintf(fs.Output(), &quot;Usage: %s convert [OPTIONS...] SOURCE TARGET\n&quot;, os.Args[0])
++		fs.PrintDefaults()</code></pre>
+    </div>
+    <div class="card card-suggestion" data-file="cmd/go-qcow2reader-example/convert.go">
+      <div class="finding-title" id="S2">
+        <span class="finding-num">S2.</span> Converting a file onto itself destroys the source <span class="pill pill-codex">Codex GPT 5.6 Sol</span><a href="#S2" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/cmd/go-qcow2reader-example/convert.go#L86-L96">cmd/go-qcow2reader-example/convert.go</a></div>
+      <pre data-start="86" data-line="91"><code class="language-go">		}
+	default:
+		return fmt.Errorf(&quot;unsupported output format %q&quot;, outputFormat)
+	}
+
+	t, err := os.Create(target)
+	if err != nil {
+		return err
+	}
+	defer t.Close()
+</code></pre>
+    <p>When the target names the source file (the same path, a symlink or a hard link), <code>os.Create</code> truncates the source before <code>Convert</code> reads it. Run on a 64 MiB qcow2, <code>-O vhdx</code> fails part way and leaves a 4 MiB file behind; raw output reports 100% and no error, and leaves a 64 MiB raw file where the qcow2 was. The raw path did this before the PR, and this PR does not change it.</p>
+    <p>Fix: open the target without <code>O_TRUNC</code>, reject it when <code>os.SameFile</code> matches the source, and truncate only after that check.</p>
+    </div>
+    <div class="card card-suggestion" data-file="image/vhdx/writer.go">
+      <div class="finding-title" id="S3">
+        <span class="finding-num">S3.</span> <code>Close</code> reads <code>wr.end</code> without the lock <span class="pill pill-gemini">Gemini 3.5 Flash</span><a href="#S3" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L441-L451">image/vhdx/writer.go</a></div>
+      <pre data-start="441" data-line="446"><code class="language-go">	// Make sure that the file extends to the end of the last allocated block, or
+	// to the end of the BAT region if no block was allocated. If the file could
+	// not be extended by truncation, and unless the last byte was written, it
+	// must read as zero, so writing a single zero byte extends the file while
+	// keeping it sparse.
+	if wr.truncate == nil &amp;&amp; wr.end &lt; wr.next {
+		if err := wr.writeAll([]byte{0}, wr.next-1); err != nil {
+			return err
+		}
+	}
+</code></pre>
+    <p><code>WriteAt</code> updates <code>wr.end</code> under <code>wr.mu</code> (line 367), but <code>Close</code> reads it after releasing the lock. The race detector reports it when <code>Close</code> overlaps in-flight writes to a target without <code>Truncate</code>, and stays silent for an <code>*os.File</code>, where the short-circuit skips the read. <code>wr.blocks</code> and <code>wr.next</code> do not race: every allocation checks <code>wr.closed</code> under the same lock, so none can follow <code>Close</code>&#39;s critical section. The doc requires <code>Close</code> after all writes, so only a caller that breaks that rule reaches this.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L362-L372">image/vhdx/writer.go</a></div>
+      <pre data-start="362" data-line="367"><code class="language-go">			}
+			if int64(nw) != chunk {
+				return n, io.ErrShortWrite
+			}
+			wr.mu.Lock()
+			wr.end = max(wr.end, fileOff+blockOff+chunk)
+			wr.mu.Unlock()
+		} else {
+			// The block is not allocated and the data is all zeros.
+			n += int(chunk)
+		}</code></pre>
+    <p>Fix: read <code>wr.end</code> inside the critical section at the top of <code>Close</code>.</p>
+    </div>
+    <div class="card card-suggestion" data-file="image/vhdx/writer.go">
+      <div class="finding-title" id="S4">
+        <span class="finding-num">S4.</span> The <code>crypto/rand.Read</code> error path cannot fire <span class="pill pill-claude">Claude Opus 5</span><a href="#S4" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L133-L145">image/vhdx/writer.go</a></div>
+      <pre data-start="133" data-line="138-140"><code class="language-go">}
+
+// newRandomGUID returns a random (version 4) GUID.
+func newRandomGUID() (guid, error) {
+	var g guid
+	if _, err := rand.Read(g[:]); err != nil {
+		return g, err
+	}
+	// In the binary form, the version nibble is the high nibble of byte 7 and
+	// the variant bits are in byte 8.
+	g[7] = (g[7] &amp; 0x0f) | 0x40
+	g[8] = (g[8] &amp; 0x3f) | 0x80
+	return g, nil</code></pre>
+    <p>Since Go 1.24, the module&#39;s floor, <code>crypto/rand.Read</code> &quot;never returns an error, and always fills b entirely&quot; (<code>go doc crypto/rand.Read</code>) and crashes the program instead of failing. This check and the three in <code>NewWriter</code> (lines 301-310) are dead code.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L296-L315">image/vhdx/writer.go</a></div>
+      <pre data-start="296" data-line="301-310"><code class="language-go">		if err := wr.truncate(wr.next); err != nil {
+			return nil, err
+		}
+	}
+
+	var err error
+	if wr.fileWriteGUID, err = newRandomGUID(); err != nil {
+		return nil, err
+	}
+	if wr.dataWriteGUID, err = newRandomGUID(); err != nil {
+		return nil, err
+	}
+	if wr.virtualDiskID, err = newRandomGUID(); err != nil {
+		return nil, err
+	}
+
+	if err := wr.writeAll(wr.header(1), header1Offset); err != nil {
+		return nil, err
+	}
+	if err := wr.writeAll(wr.header(2), header2Offset); err != nil {</code></pre>
+    <p>Fix: return a bare <code>guid</code> from <code>newRandomGUID</code> and assign the three GUIDs directly; with that change, <code>go vet</code>, golangci-lint 2.13.2 and the vhdx tests pass.</p>
+    </div>
+    <div class="card card-suggestion" data-file="README.md">
+      <div class="finding-title" id="S5">
+        <span class="finding-num">S5.</span> The README offers a raw file as a target without the sizing step <span class="pill pill-claude">Claude Opus 5</span><a href="#S5" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/README.md#L13-L23">README.md</a></div>
+      <pre data-start="13" data-line="18"><code class="language-markdown">```
+
+## Converting images
+
+The [`convert`](https://pkg.go.dev/github.com/lima-vm/go-qcow2reader/convert) package copies an image to an [`io.WriterAt`](https://pkg.go.dev/io#WriterAt),
+skipping unallocated and zero extents. The target can be a raw file, or a
+[`vhdx.Writer`](https://pkg.go.dev/github.com/lima-vm/go-qcow2reader/image/vhdx#Writer) to create a dynamic
+[VHDX](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-vhdx/83e061f8-f6e2-4de1-91bd-5d518a43d477) image:
+```go
+f, _ := os.Create(&quot;a.vhdx&quot;)
+defer f.Close()</code></pre>
+    <p><code>Convert</code> skips zero ranges, so a raw target reaches the image size only if the caller extends it first, as the CLI does at <code>convert.go:103</code>. Claude converted a 64 MiB qcow2 holding one 64 KiB cluster into a fresh file and got a 1,114,112-byte result with no error. <code>vhdx.Writer</code> sizes its own file, so the VHDX recipe needs no such step.</p>
+    <p>Fix: tell readers to call <code>f.Truncate(img.Size())</code> on a raw target first.</p>
+    </div>
+    <div class="card card-suggestion" data-file="image/vhdx/writer.go">
+      <div class="finding-title" id="S6">
+        <span class="finding-num">S6.</span> The metadata buffer size is a magic number <span class="pill pill-claude">Claude Opus 5</span><a href="#S6" class="pilcrow">&#182;</a>
+      </div>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L540-L550">image/vhdx/writer.go</a></div>
+      <pre data-start="540" data-line="545"><code class="language-go">		{physicalSectorSizeGUID, metadataIsVirtualDisk | metadataIsRequired, 4, func(b []byte) {
+			binary.LittleEndian.PutUint32(b[0:], PhysicalSectorSize)
+		}},
+	}
+
+	b := make([]byte, metadataItemsOffset+40)
+	copy(b[0:], metadataTableSignature)
+	// Reserved at 8.
+	binary.LittleEndian.PutUint16(b[10:], uint16(len(items))) // EntryCount
+	// Reserved2 at 12.
+</code></pre>
+    <p>The 40 is the sum of the item lengths at lines 527-542 (8+8+16+4+4), and nothing ties the two together; an item added without updating it panics at line 559 on the first <code>NewWriter</code> call.</p>
+      <div class="code-file-header"><a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L522-L564">image/vhdx/writer.go</a></div>
+      <pre data-start="522" data-line="527-559"><code class="language-go">		id     guid
+		flags  uint32
+		length int
+		encode func([]byte)
+	}{
+		{fileParametersGUID, metadataIsRequired, 8, func(b []byte) {
+			binary.LittleEndian.PutUint32(b[0:], uint32(wr.blockSize))
+			// Flags at 4: LeaveBlockAllocated=0, HasParent=0.
+		}},
+		{virtualDiskSizeGUID, metadataIsVirtualDisk | metadataIsRequired, 8, func(b []byte) {
+			binary.LittleEndian.PutUint64(b[0:], uint64(wr.size))
+		}},
+		{virtualDiskIDGUID, metadataIsVirtualDisk | metadataIsRequired, 16, func(b []byte) {
+			copy(b[0:], wr.virtualDiskID[:])
+		}},
+		{logicalSectorSizeGUID, metadataIsVirtualDisk | metadataIsRequired, 4, func(b []byte) {
+			binary.LittleEndian.PutUint32(b[0:], LogicalSectorSize)
+		}},
+		{physicalSectorSizeGUID, metadataIsVirtualDisk | metadataIsRequired, 4, func(b []byte) {
+			binary.LittleEndian.PutUint32(b[0:], PhysicalSectorSize)
+		}},
+	}
+
+	b := make([]byte, metadataItemsOffset+40)
+	copy(b[0:], metadataTableSignature)
+	// Reserved at 8.
+	binary.LittleEndian.PutUint16(b[10:], uint16(len(items))) // EntryCount
+	// Reserved2 at 12.
+
+	itemOffset := int(metadataItemsOffset)
+	for i, item := range items {
+		entry := b[32+32*i:]
+		copy(entry[0:], item.id[:])
+		binary.LittleEndian.PutUint32(entry[16:], uint32(itemOffset))
+		binary.LittleEndian.PutUint32(entry[20:], uint32(item.length))
+		binary.LittleEndian.PutUint32(entry[24:], item.flags)
+		// Reserved2 at 28.
+		item.encode(b[itemOffset : itemOffset+item.length])
+		itemOffset += item.length
+	}
+	return b
+}
+</code></pre>
+    <p>Fix: size the buffer by summing <code>item.length</code> over <code>items</code>.</p>
+    </div>
+    <hr>
+    <h2 id="design-observations" class="section-design">Design Observations <a href="#design-observations" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-design">
+    <p><strong>Concerns</strong></p>
+    <ul>
+      <li><em></em><code>Close</code> finalizes whatever was written<em></em> (future) <span class="pill pill-codex">Codex GPT 5.6 Sol</span> — writing the file type identifier last protects an interrupted conversion only while nothing calls <code>Close</code>, and a deferred <code>Close</code>, the usual Go idiom, finalizes a failed one (I1). An explicit finalize step, with <code>Close</code> only releasing resources, would make the safe path the easy one.</li>
+      <li><strong>The CLI&#39;s target setup is not transactional</strong> (future) <span class="pill pill-codex">Codex GPT 5.6 Sol</span> — validation, truncation, conversion and finalization are spread through <code>cmdConvert</code>. Converting into a temporary file beside the target and renaming it on success would cover I2, S2 and a failure mid-conversion in one change.</li>
+    </ul>
+    <p><strong>Strengths</strong></p>
+    <ul>
+      <li><em></em>Unwritten blocks get <code>PAYLOAD_BLOCK_ZERO</code><em></em> (in-scope) <span class="pill pill-claude">Claude Opus 5</span> — line 594. MS-VHDX 2.5.1.1 leaves <code>PAYLOAD_BLOCK_NOT_PRESENT</code> undefined in a dynamic image and requires zeros for <code>PAYLOAD_BLOCK_ZERO</code>, so skipping zero writes is safe for any reader, not only qemu.</li>
+      <li><strong>The file type identifier goes out last</strong> (in-scope) <span class="pill pill-claude">Claude Opus 5</span> <span class="pill pill-codex">Codex GPT 5.6 Sol</span> — lines 452-454. A conversion that stops early leaves a file no reader takes for a VHDX, as the second run in I1&#39;s probe shows.</li>
+      <li><em></em>Output-format and block-size checks run before <code>os.Create</code><em></em> (in-scope) <span class="pill pill-claude">Claude Opus 5</span> <span class="pill pill-codex">Codex GPT 5.6 Sol</span> — an invalid <code>-O</code> or <code>-block-size</code> leaves an existing target intact (run), which resolves Copilot&#39;s comment on the earlier revision.</li>
+      <li><strong>The zero scan runs outside the mutex</strong> (in-scope) <span class="pill pill-claude">Claude Opus 5</span> <span class="pill pill-codex">Codex GPT 5.6 Sol</span> <span class="pill pill-gemini">Gemini 3.1 Pro</span> <span class="pill pill-gemini">Gemini 3.5 Flash</span> — lines 389-402. Payload writes proceed in parallel, and the re-check under the lock keeps two goroutines from allocating one block (I3 asks for a test of it).</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="testing-assessment">Testing Assessment <a href="#testing-assessment" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>I ran the suite myself at the review SHA on darwin/arm64 (Go 1.27.1, qemu-img 11.1.1): <code>go test ./...</code> passes, <code>go vet</code> is clean in both modules, and <code>golangci-lint run</code> (v2.13.2) reports 0 issues. CI passed at the same SHA, including the new Phase 3 of <code>hack/compare-with-qemu-img.sh</code>, which converts four images to VHDX and compares them with qemu-img. Codex also passed the suites under <code>GOTOOLCHAIN=go1.24.0</code>, the module&#39;s floor. CLI conversions of a sparse 100 MiB qcow2 and a sparse 10 GiB qcow2 passed <code>qemu-img check</code> and <code>qemu-img compare</code>.</p>
+    <p>Gaps, by risk:</p>
+    <ol>
+      <li><em></em>Two goroutines allocating one block, and targets without <code>Truncate</code><em></em> (I3). The mutation script shows the suite misses both.</li>
+      <li><strong>The example CLI has no tests.</strong> Its option checks (I2), its handling of an aliased target (S2) and its help output (S1) were checked only by running the binary.</li>
+      <li><strong>Negative-path tests with no matcher.</strong> <code>TestWriterOutOfBounds</code> (line 280) and <code>TestWriterInvalidOptions</code> (lines 319, 322) assert only <code>err != nil</code>, so they pass when the error comes from the wrong check <span class="pill pill-claude">Claude Opus 5</span>.</li>
+      <li><strong>Failing targets.</strong> Short or failed writes to the underlying <code>io.WriterAt</code> and a failing <code>Close</code> are untested <span class="pill pill-claude">Claude Opus 5</span>.</li>
+    </ol>
+    <p>No test asserts allocated size, only file size. Given the APFS measurements in I4, that is the right choice.</p>
+    </div>
+    <hr>
+    <h2 id="documentation-assessment">Documentation Assessment <a href="#documentation-assessment" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <ul>
+      <li><code>README.md</code>: I1 (the example finalizes a failed conversion) and S5 (the raw-target sizing step).</li>
+      <li><code>image/vhdx/writer.go</code>: I4 (three comments on holes) and I5 (the BAT bound).</li>
+      <li>CLI help hides the new flags (S1).</li>
+      <li>The commit message repeats the claims I4 and I5 correct. It also calls the default block size &quot;smaller than the 8-32 MiB used by qemu-img&quot;; Claude measured qemu-img 11.1.1 defaults from 8 MiB up to 64 MiB, depending on disk size. The code comment hedges with &quot;typically&quot;; the commit message does not.</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="commit-structure">Commit Structure <a href="#commit-structure" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p>One cohesive commit, which suits a new writer with its CLI and test wiring. Its body states the two claims I4 and I5 correct, so amend it along with those fixes <span class="pill pill-codex">Codex GPT 5.6 Sol</span>.</p>
+    </div>
+    <hr>
+    <h2 id="acknowledged-limitations">Acknowledged Limitations <a href="#acknowledged-limitations" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <ul>
+      <li><strong>Blocks are never deallocated</strong> — <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L217-L218"><code>image/vhdx/writer.go:217-218</code></a>: &quot;A block is never deallocated: writing zeros over a block that is already allocated stores the zeros in the file.&quot; <code>Convert</code> writes each range at most once, so conversion is unaffected.</li>
+      <li><strong>The target must be new or zeroed</strong> — <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L220-L222"><code>image/vhdx/writer.go:220-222</code></a>. The CLI creates it with <code>os.Create</code>.</li>
+      <li><em></em><code>Close</code> only after all writes<em></em> — <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L228-L230"><code>image/vhdx/writer.go:228-230</code></a>. <code>convert.Convert</code> waits for every worker before it returns (<a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/convert/convert.go#L223"><code>convert/convert.go:223</code></a>), so the CLI keeps the rule; S3 is what a caller that breaks it would see.</li>
+      <li><strong>The log stays empty</strong> — <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L62"><code>image/vhdx/writer.go:62</code></a>. Fine for a freshly written dynamic image.</li>
+      <li><strong>Small default blocks, because some file systems fill small holes</strong> — <a href="https://github.com/lima-vm/go-qcow2reader/blob/65fefc6ca9bd636984526f3bbb26c1a0e527e858/image/vhdx/writer.go#L170-L173"><code>image/vhdx/writer.go:170-173</code></a>. The APFS probe in I4 agrees: it filled every gap up to 16 MiB.</li>
+    </ul>
+    </div>
+    <hr>
+    <h2 id="agent-performance-retro">Agent Performance Retro <a href="#agent-performance-retro" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p><strong>[Claude Opus 5]</strong> — The broadest and most experimental review. It was the only agent to test the truncation comments against the file system, and its gap-size sweep on APFS matched my own probe row for row. Its test-gap finding named the exact mutation to try, and the mutation behaved as it predicted. It credited the CLI&#39;s validate-before-create block after trying only <code>-block-size</code> and <code>-O</code>, and so missed the unchecked conversion options Codex found. Its reproducers depend on helpers and <code>.scratch/</code> paths it did not paste, so none would run as written.</p>
+    <p><strong>[Codex GPT 5.6 Sol]</strong> — Its first launch failed within seconds on an expired login and ran again after re-authentication, which used its one retry. The relaunch found every CLI and README problem in the report by running the binary against bad input: unchecked conversion options, an aliased target, and the README flow with a source that fails half way. It also ran the suites under <code>GOTOOLCHAIN=go1.24.0</code>, the CI floor, which no other agent tried. It filed the pre-existing aliasing hazard as Important, and it marked <code>writer_test.go</code> clean while its own Testing Assessment lists the missing non-<code>Truncate</code> coverage. Like Claude&#39;s, its reproducers point at <code>.scratch/</code> files the author does not have.</p>
+    <p><strong>[Gemini 3.1 Pro]</strong> — Reported no findings, and its Testing Assessment credits the suite with &quot;explicit concurrent allocation safety&quot;, which the mutation run disproves: deleting the re-check leaves every PR test green. It marked four files clean in which other agents found Important issues. It also wrote <code>test.vhdx</code> and four other scratch images into its worktree root instead of <code>.scratch/</code>, and wrote its severity sections as bullet items instead of headings.</p>
+    <p><strong>[Gemini 3.5 Flash]</strong> — Ran the tests and golangci-lint, then raised one Important race between <code>Close</code> and <code>WriteAt</code>. The race detector confirms part of it: <code>Close</code> reads <code>wr.end</code> unlocked, but only a target without <code>Truncate</code> reaches that read, and only when a caller breaks the rule that <code>Close</code> follows all writes. Its claim that <code>wr.blocks</code> and <code>wr.next</code> race, and could corrupt the BAT, does not hold, since the <code>closed</code> check orders every allocation before <code>Close</code>&#39;s critical section. Its buffer-flush suggestion defends against a change nobody has made. The two Gemini models agreed the writer was sound apart from Flash&#39;s race, which counts as one opinion, not two.</p>
+    <h3 id="summary">Summary <a href="#summary" class="pilcrow">&#182;</a></h3>
+    <table class="retro-table">
+      <thead><tr><th></th><th><span class="pill pill-claude">Claude Opus 5</span></th><th><span class="pill pill-codex">Codex GPT 5.6 Sol</span></th><th><span class="pill pill-gemini">Gemini 3.1 Pro</span></th><th><span class="pill pill-gemini">Gemini 3.5 Flash</span></th></tr></thead>
+      <tbody>
+        <tr><td>Duration</td><td>24m 43s</td><td>18m 05s</td><td>6m 08s</td><td>3m 50s</td></tr>
+        <tr><td>Findings</td><td>3I 4S</td><td>3I 2S</td><td>none</td><td>1S</td></tr>
+        <tr><td>Tool calls</td><td>46 (Bash 30, Read 7, Write 5)</td><td>43 (shell 28, web<em></em>run 7, apply_patch 4)</td><td>20 (run<em>shell</em>command 20)</td><td>16 (read<em>file 5, run</em>shell<em>command 5, grep</em>search 4)</td></tr>
+        <tr><td>Design observations</td><td>5</td><td>4</td><td>3</td><td>3</td></tr>
+        <tr><td>False positives</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>Unique insights</td><td>5</td><td>3</td><td>0</td><td>1</td></tr>
+        <tr><td>Files reviewed</td><td>7</td><td>7</td><td>7</td><td>7</td></tr>
+        <tr><td>Coverage misses</td><td>0</td><td>1</td><td>4</td><td>3</td></tr>
+        <tr><td><strong>Totals</strong></td><td><strong>3I 4S</strong></td><td><strong>3I 2S</strong></td><td><strong>none</strong></td><td><strong>1S</strong></td></tr>
+        <tr><td>Downgraded</td><td>0</td><td>1 (I→S)</td><td>0</td><td>1 (I→S)</td></tr>
+        <tr><td>Dropped</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+      </tbody>
+    </table>
+    <p>Claude and Codex found different halves of the report: Claude worked through the writer, its comments and its tests, and Codex ran the CLI and the README flow against bad input. Neither found the other&#39;s half, so this review needed both. The two Gemini runs produced one downgraded suggestion between them.</p>
+    <p><strong>Reconciliation</strong></p>
+    <ul>
+      <li>Gemini 3.5 Flash I1 (data race on writer fields, important) downgraded to S3. The race detector finds a race on <code>wr.end</code> only when <code>Close</code> overlaps writes to a target without <code>Truncate</code>, which the doc forbids; <code>wr.blocks</code> and <code>wr.next</code> do not race.</li>
+      <li>Codex GPT 5.6 Sol I2 (output may truncate the input, important) downgraded to S2. The raw path destroyed an aliased source at the merge-base too, and this PR does not change that code.</li>
+    </ul>
+    <p>Dropped: Gemini 3.5 Flash S1 (the <code>len(buf) == cap(buf)</code> flush condition in <code>writeBAT</code>). The buffer&#39;s capacity is 1 MiB, a multiple of the 8-byte entry, so the flush fires at exactly 1 MiB; the failure it describes needs a future change to the entry size.</p>
+    </div>
+    <hr>
+    <h2 id="review-process-notes">Review Process Notes <a href="#review-process-notes" class="pilcrow">&#182;</a></h2>
+
+    <div class="card card-neutral">
+    <p><strong>Skill improvements</strong></p>
+    <ul>
+      <li><strong>Ask agents to paste reproducers whole.</strong> The per-agent output format invites reproducers but does not say what makes one usable. Add: &quot;A reproducer holds the entire probe and opens with a comment naming the file to save it as and the command that runs it. A path under <code>.scratch/</code>, or a helper you did not paste, does not exist for the reader.&quot; Without it, the consolidator rebuilds each probe before a finding can keep its severity.</li>
+      <li><strong>Apply one bot filter to review bodies and inline comments.</strong> A review fetched through <code>gh pr view</code> reports its author with no account type, so a bot whose login lacks the <code>[bot]</code> suffix passes the filter, while the same bot&#39;s inline comments, which the REST API marks as type <code>Bot</code>, are dropped. Agents then see a bot&#39;s summary of a problem without the comment that locates it.</li>
+      <li><strong>Add an expired login to the Step 4 failure modes.</strong> An agent CLI whose stored login has expired fails within seconds with a 401 (Codex: <code>token_expired</code>), and only the user can renew it interactively. Gate the relaunch on the CLI&#39;s login check (<code>codex login status</code>), so the one retry cannot fail the same way.</li>
+    </ul>
+    <p><strong>Repo context updates</strong></p>
+    <ul>
+      <li><code>[repo]</code> REMOVE &quot;qemu-img output size depends on the caching mode&quot; and &quot;Padded writes extend the file&quot;. Both describe the direct-I/O conversion mode of an unmerged PR; the default branch has no alignment option, no <code>directio</code> package and no padded writes. Re-add them if that work lands.</li>
+      <li><code>[repo]</code> UPDATE &quot;Extent alignment&quot;: drop &quot;(such as direct-I/O <code>opts.Alignment</code>)&quot;, since <code>convert.Options</code> has no alignment field on the default branch.</li>
+      <li><code>[repo]</code> On APFS (macOS 26), a gap of 16 MiB or less between written ranges is allocated after fsync, whether the file was extended by <code>ftruncate</code> or by a write past EOF, while gaps of 32 MiB or more stay holes (measured 2026-09-12). Treat any comment, doc or test that promises holes or a small allocated size on macOS as unverified until it is measured with <code>st_blocks</code> on the target file system.</li>
+      <li><code>[repo]</code> The VHDX writer exists so lima&#39;s HCS driver can drop <code>qemu-img.exe</code> (lima-vm/lima#5466), so production conversions run on Windows. Weigh claims about sparse output and block size against NTFS, where a file has no holes unless it is marked sparse, as well as against the Linux and macOS runners CI uses.</li>
+      <li><code>[repo]</code> The example CLI has no tests, and <code>hack/compare-with-qemu-img.sh</code> runs only its success path. Settle claims about its error handling (invalid options, the target it opens) by running the built binary, not by reading the flag setup.</li>
+    </ul>
+    </div>
+  </main>
+  <script>window.Prism = window.Prism || {}; Prism.manual = true;</script>
+  <script>
+/**
+ * Minified by jsDelivr using Terser v5.39.0.
+ * Original file: /npm/prismjs@1.29.0/prism.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(e){var t=/(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i,n=0,a={},r={manual:e.Prism&&e.Prism.manual,disableWorkerMessageHandler:e.Prism&&e.Prism.disableWorkerMessageHandler,util:{encode:function e(t){return t instanceof s?new s(t.type,e(t.content),t.alias):Array.isArray(t)?t.map(e):t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).slice(8,-1)},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++n}),e.__id},clone:function e(t,n){var a,s;switch(n=n||{},r.util.type(t)){case"Object":if(s=r.util.objId(t),n[s])return n[s];for(var i in a={},n[s]=a,t)t.hasOwnProperty(i)&&(a[i]=e(t[i],n));return a;case"Array":return s=r.util.objId(t),n[s]?n[s]:(a=[],n[s]=a,t.forEach((function(t,r){a[r]=e(t,n)})),a);default:return t}},getLanguage:function(e){for(;e;){var n=t.exec(e.className);if(n)return n[1].toLowerCase();e=e.parentElement}return"none"},setLanguage:function(e,n){e.className=e.className.replace(RegExp(t,"gi"),""),e.classList.add("language-"+n)},currentScript:function(){if("undefined"==typeof document)return null;if("currentScript"in document)return document.currentScript;try{throw new Error}catch(a){var e=(/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(a.stack)||[])[1];if(e){var t=document.getElementsByTagName("script");for(var n in t)if(t[n].src==e)return t[n]}return null}},isActive:function(e,t,n){for(var a="no-"+t;e;){var r=e.classList;if(r.contains(t))return!0;if(r.contains(a))return!1;e=e.parentElement}return!!n}},languages:{plain:a,plaintext:a,text:a,txt:a,extend:function(e,t){var n=r.util.clone(r.languages[e]);for(var a in t)n[a]=t[a];return n},insertBefore:function(e,t,n,a){var s=(a=a||r.languages)[e],i={};for(var o in s)if(s.hasOwnProperty(o)){if(o==t)for(var l in n)n.hasOwnProperty(l)&&(i[l]=n[l]);n.hasOwnProperty(o)||(i[o]=s[o])}var u=a[e];return a[e]=i,r.languages.DFS(r.languages,(function(t,n){n===u&&t!=e&&(this[t]=i)})),i},DFS:function e(t,n,a,s){s=s||{};var i=r.util.objId;for(var o in t)if(t.hasOwnProperty(o)){n.call(t,o,t[o],a||o);var l=t[o],u=r.util.type(l);"Object"!==u||s[i(l)]?"Array"!==u||s[i(l)]||(s[i(l)]=!0,e(l,n,o,s)):(s[i(l)]=!0,e(l,n,null,s))}}},plugins:{},highlightAll:function(e,t){r.highlightAllUnder(document,e,t)},highlightAllUnder:function(e,t,n){var a={callback:n,container:e,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};r.hooks.run("before-highlightall",a),a.elements=Array.prototype.slice.apply(a.container.querySelectorAll(a.selector)),r.hooks.run("before-all-elements-highlight",a);for(var s,i=0;s=a.elements[i++];)r.highlightElement(s,!0===t,a.callback)},highlightElement:function(t,n,a){var s=r.util.getLanguage(t),i=r.languages[s];r.util.setLanguage(t,s);var o=t.parentElement;o&&"pre"===o.nodeName.toLowerCase()&&r.util.setLanguage(o,s);var l={element:t,language:s,grammar:i,code:t.textContent};function u(e){l.highlightedCode=e,r.hooks.run("before-insert",l),l.element.innerHTML=l.highlightedCode,r.hooks.run("after-highlight",l),r.hooks.run("complete",l),a&&a.call(l.element)}if(r.hooks.run("before-sanity-check",l),(o=l.element.parentElement)&&"pre"===o.nodeName.toLowerCase()&&!o.hasAttribute("tabindex")&&o.setAttribute("tabindex","0"),!l.code)return r.hooks.run("complete",l),void(a&&a.call(l.element));if(r.hooks.run("before-highlight",l),l.grammar)if(n&&e.Worker){var g=new Worker(r.filename);g.onmessage=function(e){u(e.data)},g.postMessage(JSON.stringify({language:l.language,code:l.code,immediateClose:!0}))}else u(r.highlight(l.code,l.grammar,l.language));else u(r.util.encode(l.code))},highlight:function(e,t,n){var a={code:e,grammar:t,language:n};if(r.hooks.run("before-tokenize",a),!a.grammar)throw new Error('The language "'+a.language+'" has no grammar.');return a.tokens=r.tokenize(a.code,a.grammar),r.hooks.run("after-tokenize",a),s.stringify(r.util.encode(a.tokens),a.language)},tokenize:function(e,t){var n=t.rest;if(n){for(var a in n)t[a]=n[a];delete t.rest}var r=new l;return u(r,r.head,e),o(e,r,t,r.head,0),function(e){var t=[],n=e.head.next;for(;n!==e.tail;)t.push(n.value),n=n.next;return t}(r)},hooks:{all:{},add:function(e,t){var n=r.hooks.all;n[e]=n[e]||[],n[e].push(t)},run:function(e,t){var n=r.hooks.all[e];if(n&&n.length)for(var a,s=0;a=n[s++];)a(t)}},Token:s};function s(e,t,n,a){this.type=e,this.content=t,this.alias=n,this.length=0|(a||"").length}function i(e,t,n,a){e.lastIndex=t;var r=e.exec(n);if(r&&a&&r[1]){var s=r[1].length;r.index+=s,r[0]=r[0].slice(s)}return r}function o(e,t,n,a,l,c){for(var d in n)if(n.hasOwnProperty(d)&&n[d]){var p=n[d];p=Array.isArray(p)?p:[p];for(var m=0;m<p.length;++m){if(c&&c.cause==d+","+m)return;var h=p[m],f=h.inside,v=!!h.lookbehind,b=!!h.greedy,y=h.alias;if(b&&!h.pattern.global){var F=h.pattern.toString().match(/[imsuy]*$/)[0];h.pattern=RegExp(h.pattern.source,F+"g")}for(var x=h.pattern||h,k=a.next,w=l;k!==t.tail&&!(c&&w>=c.reach);w+=k.value.length,k=k.next){var A=k.value;if(t.length>e.length)return;if(!(A instanceof s)){var P,$=1;if(b){if(!(P=i(x,w,e,v))||P.index>=e.length)break;var S=P.index,E=P.index+P[0].length,_=w;for(_+=k.value.length;S>=_;)_+=(k=k.next).value.length;if(w=_-=k.value.length,k.value instanceof s)continue;for(var j=k;j!==t.tail&&(_<E||"string"==typeof j.value);j=j.next)$++,_+=j.value.length;$--,A=e.slice(w,_),P.index-=w}else if(!(P=i(x,0,A,v)))continue;S=P.index;var C=P[0],L=A.slice(0,S),z=A.slice(S+C.length),O=w+A.length;c&&O>c.reach&&(c.reach=O);var T=k.prev;if(L&&(T=u(t,T,L),w+=L.length),g(t,T,$),k=u(t,T,new s(d,f?r.tokenize(C,f):C,y,C)),z&&u(t,k,z),$>1){var M={cause:d+","+m,reach:O};o(e,t,n,k.prev,w,M),c&&M.reach>c.reach&&(c.reach=M.reach)}}}}}}function l(){var e={value:null,prev:null,next:null},t={value:null,prev:e,next:null};e.next=t,this.head=e,this.tail=t,this.length=0}function u(e,t,n){var a=t.next,r={value:n,prev:t,next:a};return t.next=r,a.prev=r,e.length++,r}function g(e,t,n){for(var a=t.next,r=0;r<n&&a!==e.tail;r++)a=a.next;t.next=a,a.prev=t,e.length-=r}if(e.Prism=r,s.stringify=function e(t,n){if("string"==typeof t)return t;if(Array.isArray(t)){var a="";return t.forEach((function(t){a+=e(t,n)})),a}var s={type:t.type,content:e(t.content,n),tag:"span",classes:["token",t.type],attributes:{},language:n},i=t.alias;i&&(Array.isArray(i)?Array.prototype.push.apply(s.classes,i):s.classes.push(i)),r.hooks.run("wrap",s);var o="";for(var l in s.attributes)o+=" "+l+'="'+(s.attributes[l]||"").replace(/"/g,"&quot;")+'"';return"<"+s.tag+' class="'+s.classes.join(" ")+'"'+o+">"+s.content+"</"+s.tag+">"},!e.document)return e.addEventListener?(r.disableWorkerMessageHandler||e.addEventListener("message",(function(t){var n=JSON.parse(t.data),a=n.language,s=n.code,i=n.immediateClose;e.postMessage(r.highlight(s,r.languages[a],a)),i&&e.close()}),!1),r):r;var c=r.util.currentScript();function d(){r.manual||r.highlightAll()}if(c&&(r.filename=c.src,c.hasAttribute("data-manual")&&(r.manual=!0)),!r.manual){var p=document.readyState;"loading"===p||"interactive"===p&&c&&c.defer?document.addEventListener("DOMContentLoaded",d):window.requestAnimationFrame?window.requestAnimationFrame(d):window.setTimeout(d,16)}return r}(_self);
+/**
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ *
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * @author Lea Verou <https://lea.verou.me>
+ * @namespace
+ * @public
+ */"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism),Prism.languages.markup={comment:{pattern:/<!--(?:(?!<!--)[\s\S])*?-->/,greedy:!0},prolog:{pattern:/<\?[\s\S]+?\?>/,greedy:!0},doctype:{pattern:/<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,greedy:!0,inside:{"internal-subset":{pattern:/(^[^\[]*\[)[\s\S]+(?=\]>$)/,lookbehind:!0,greedy:!0,inside:null},string:{pattern:/"[^"]*"|'[^']*'/,greedy:!0},punctuation:/^<!|>$|[[\]]/,"doctype-tag":/^DOCTYPE/i,name:/[^\s<>'"]+/}},cdata:{pattern:/<!\[CDATA\[[\s\S]*?\]\]>/i,greedy:!0},tag:{pattern:/<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,greedy:!0,inside:{tag:{pattern:/^<\/?[^\s>\/]+/,inside:{punctuation:/^<\/?/,namespace:/^[^\s>\/:]+:/}},"special-attr":[],"attr-value":{pattern:/=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,inside:{punctuation:[{pattern:/^=/,alias:"attr-equals"},{pattern:/^(\s*)["']|["']$/,lookbehind:!0}]}},punctuation:/\/?>/,"attr-name":{pattern:/[^\s>\/]+/,inside:{namespace:/^[^\s>\/:]+:/}}}},entity:[{pattern:/&[\da-z]{1,8};/i,alias:"named-entity"},/&#x?[\da-f]{1,8};/i]},Prism.languages.markup.tag.inside["attr-value"].inside.entity=Prism.languages.markup.entity,Prism.languages.markup.doctype.inside["internal-subset"].inside=Prism.languages.markup,Prism.hooks.add("wrap",(function(e){"entity"===e.type&&(e.attributes.title=e.content.replace(/&amp;/,"&"))})),Object.defineProperty(Prism.languages.markup.tag,"addInlined",{value:function(e,t){var n={};n["language-"+t]={pattern:/(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,lookbehind:!0,inside:Prism.languages[t]},n.cdata=/^<!\[CDATA\[|\]\]>$/i;var a={"included-cdata":{pattern:/<!\[CDATA\[[\s\S]*?\]\]>/i,inside:n}};a["language-"+t]={pattern:/[\s\S]+/,inside:Prism.languages[t]};var r={};r[e]={pattern:RegExp(/(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g,(function(){return e})),"i"),lookbehind:!0,greedy:!0,inside:a},Prism.languages.insertBefore("markup","cdata",r)}}),Object.defineProperty(Prism.languages.markup.tag,"addAttribute",{value:function(e,t){Prism.languages.markup.tag.inside["special-attr"].push({pattern:RegExp(/(^|["'\s])/.source+"(?:"+e+")"+/\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source,"i"),lookbehind:!0,inside:{"attr-name":/^[^\s=]+/,"attr-value":{pattern:/=[\s\S]+/,inside:{value:{pattern:/(^=\s*(["']|(?!["'])))\S[\s\S]*(?=\2$)/,lookbehind:!0,alias:[t,"language-"+t],inside:Prism.languages[t]},punctuation:[{pattern:/^=/,alias:"attr-equals"},/"|'/]}}}})}}),Prism.languages.html=Prism.languages.markup,Prism.languages.mathml=Prism.languages.markup,Prism.languages.svg=Prism.languages.markup,Prism.languages.xml=Prism.languages.extend("markup",{}),Prism.languages.ssml=Prism.languages.xml,Prism.languages.atom=Prism.languages.xml,Prism.languages.rss=Prism.languages.xml,function(e){var t=/(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;e.languages.css={comment:/\/\*[\s\S]*?\*\//,atrule:{pattern:RegExp("@[\\w-](?:"+/[^;{\s"']|\s+(?!\s)/.source+"|"+t.source+")*?"+/(?:;|(?=\s*\{))/.source),inside:{rule:/^@[\w-]+/,"selector-function-argument":{pattern:/(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,lookbehind:!0,alias:"selector"},keyword:{pattern:/(^|[^\w-])(?:and|not|only|or)(?![\w-])/,lookbehind:!0}}},url:{pattern:RegExp("\\burl\\((?:"+t.source+"|"+/(?:[^\\\r\n()"']|\\[\s\S])*/.source+")\\)","i"),greedy:!0,inside:{function:/^url/i,punctuation:/^\(|\)$/,string:{pattern:RegExp("^"+t.source+"$"),alias:"url"}}},selector:{pattern:RegExp("(^|[{}\\s])[^{}\\s](?:[^{};\"'\\s]|\\s+(?![\\s{])|"+t.source+")*(?=\\s*\\{)"),lookbehind:!0},string:{pattern:t,greedy:!0},property:{pattern:/(^|[^-\w\xA0-\uFFFF])(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,lookbehind:!0},important:/!important\b/i,function:{pattern:/(^|[^-a-z0-9])[-a-z0-9]+(?=\()/i,lookbehind:!0},punctuation:/[(){};:,]/},e.languages.css.atrule.inside.rest=e.languages.css;var n=e.languages.markup;n&&(n.tag.addInlined("style","css"),n.tag.addAttribute("style","css"))}(Prism),Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,lookbehind:!0,greedy:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0,greedy:!0}],string:{pattern:/(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+|\bcatch\s+\()[\w.\\]+/i,lookbehind:!0,inside:{punctuation:/[.\\]/}},keyword:/\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while)\b/,boolean:/\b(?:false|true)\b/,function:/\b\w+(?=\()/,number:/\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,operator:/[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,punctuation:/[{}[\];(),.:]/},Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.languages.clike["class-name"],{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,lookbehind:!0}],keyword:[{pattern:/((?:^|\})\s*)catch\b/,lookbehind:!0},{pattern:/(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,lookbehind:!0}],function:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,number:{pattern:RegExp(/(^|[^\w$])/.source+"(?:"+/NaN|Infinity/.source+"|"+/0[bB][01]+(?:_[01]+)*n?/.source+"|"+/0[oO][0-7]+(?:_[0-7]+)*n?/.source+"|"+/0[xX][\dA-Fa-f]+(?:_[\dA-Fa-f]+)*n?/.source+"|"+/\d+(?:_\d+)*n/.source+"|"+/(?:\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\.\d+(?:_\d+)*)(?:[Ee][+-]?\d+(?:_\d+)*)?/.source+")"+/(?![\w$])/.source),lookbehind:!0},operator:/--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/}),Prism.languages.javascript["class-name"][0].pattern=/(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/,Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:RegExp(/((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)/.source+/\//.source+"(?:"+/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}/.source+"|"+/(?:\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.|\[(?:[^[\]\\\r\n]|\\.)*\])*\])*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}v[dgimyus]{0,7}/.source+")"+/(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/.source),lookbehind:!0,greedy:!0,inside:{"regex-source":{pattern:/^(\/)[\s\S]+(?=\/[a-z]*$)/,lookbehind:!0,alias:"language-regex",inside:Prism.languages.regex},"regex-delimiter":/^\/|\/$/,"regex-flags":/^[a-z]+$/}},"function-variable":{pattern:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,alias:"function"},parameter:[{pattern:/(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,lookbehind:!0,inside:Prism.languages.javascript}],constant:/\b[A-Z](?:[A-Z_]|\dx?)*\b/}),Prism.languages.insertBefore("javascript","string",{hashbang:{pattern:/^#!.*/,greedy:!0,alias:"comment"},"template-string":{pattern:/`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,greedy:!0,inside:{"template-punctuation":{pattern:/^`|`$/,alias:"string"},interpolation:{pattern:/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,lookbehind:!0,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}},"string-property":{pattern:/((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,lookbehind:!0,greedy:!0,alias:"property"}}),Prism.languages.insertBefore("javascript","operator",{"literal-property":{pattern:/((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,lookbehind:!0,alias:"property"}}),Prism.languages.markup&&(Prism.languages.markup.tag.addInlined("script","javascript"),Prism.languages.markup.tag.addAttribute(/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/.source,"javascript")),Prism.languages.js=Prism.languages.javascript,function(){if(void 0!==Prism&&"undefined"!=typeof document){Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector);var e={js:"javascript",py:"python",rb:"ruby",ps1:"powershell",psm1:"powershell",sh:"bash",bat:"batch",h:"c",tex:"latex"},t="data-src-status",n="loading",a="loaded",r="pre[data-src]:not(["+t+'="'+a+'"]):not(['+t+'="'+n+'"])';Prism.hooks.add("before-highlightall",(function(e){e.selector+=", "+r})),Prism.hooks.add("before-sanity-check",(function(s){var i=s.element;if(i.matches(r)){s.code="",i.setAttribute(t,n);var o=i.appendChild(document.createElement("CODE"));o.textContent="Loading…";var l=i.getAttribute("data-src"),u=s.language;if("none"===u){var g=(/\.(\w+)$/.exec(l)||[,"none"])[1];u=e[g]||g}Prism.util.setLanguage(o,u),Prism.util.setLanguage(i,u);var c=Prism.plugins.autoloader;c&&c.loadLanguages(u),function(e,t,n){var a=new XMLHttpRequest;a.open("GET",e,!0),a.onreadystatechange=function(){4==a.readyState&&(a.status<400&&a.responseText?t(a.responseText):a.status>=400?n("✖ Error "+a.status+" while fetching file: "+a.statusText):n("✖ Error: File does not exist or is empty"))},a.send(null)}(l,(function(e){i.setAttribute(t,a);var n=function(e){var t=/^\s*(\d+)\s*(?:(,)\s*(?:(\d+)\s*)?)?$/.exec(e||"");if(t){var n=Number(t[1]),a=t[2],r=t[3];return a?r?[n,Number(r)]:[n,void 0]:[n,n]}}(i.getAttribute("data-range"));if(n){var r=e.split(/\r\n?|\n/g),s=n[0],l=null==n[1]?r.length:n[1];s<0&&(s+=r.length),s=Math.max(0,Math.min(s-1,r.length)),l<0&&(l+=r.length),l=Math.max(0,Math.min(l,r.length)),e=r.slice(s,l).join("\n"),i.hasAttribute("data-start")||i.setAttribute("data-start",String(s+1))}o.textContent=e,Prism.highlightElement(o)}),(function(e){i.setAttribute(t,"failed"),o.textContent=e}))}})),Prism.plugins.fileHighlight={highlight:function(e){for(var t,n=(e||document).querySelectorAll(r),a=0;t=n[a++];)Prism.highlightElement(t)}};var s=!1;Prism.fileHighlight=function(){s||(console.warn("Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead."),s=!0),Prism.plugins.fileHighlight.highlight.apply(this,arguments)}}}();
+//# sourceMappingURL=/sm/1f55244a569fc0911044b5e4725a97872b6d85b0662a3429a809bb62f713c381.map
+Prism.languages.go=Prism.languages.extend("clike",{string:{pattern:/(^|[^\\])"(?:\\.|[^"\\\r\n])*"|`[^`]*`/,lookbehind:!0,greedy:!0},keyword:/\b(?:break|case|chan|const|continue|default|defer|else|fallthrough|for|func|go(?:to)?|if|import|interface|map|package|range|return|select|struct|switch|type|var)\b/,boolean:/\b(?:_|false|iota|nil|true)\b/,number:[/\b0(?:b[01_]+|o[0-7_]+)i?\b/i,/\b0x(?:[a-f\d_]+(?:\.[a-f\d_]*)?|\.[a-f\d_]+)(?:p[+-]?\d+(?:_\d+)*)?i?(?!\w)/i,/(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?[\d_]+)?i?(?!\w)/i],operator:/[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,builtin:/\b(?:append|bool|byte|cap|close|complex|complex(?:64|128)|copy|delete|error|float(?:32|64)|u?int(?:8|16|32|64)?|imag|len|make|new|panic|print(?:ln)?|real|recover|rune|string|uintptr)\b/}),Prism.languages.insertBefore("go","string",{char:{pattern:/'(?:\\.|[^'\\\r\n]){0,10}'/,greedy:!0}}),delete Prism.languages.go["class-name"];
+!function(e){var t="\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BASH_COMPLETION_COMPAT_DIR|BASH_LINENO|BASH_REMATCH|BASH_SOURCE|BASH_VERSINFO|BASH_VERSION|COLORTERM|COLUMNS|COMP_WORDBREAKS|DBUS_SESSION_BUS_ADDRESS|DEFAULTS_PATH|DESKTOP_SESSION|DIRSTACK|DISPLAY|EUID|GDMSESSION|GDM_LANG|GNOME_KEYRING_CONTROL|GNOME_KEYRING_PID|GPG_AGENT_INFO|GROUPS|HISTCONTROL|HISTFILE|HISTFILESIZE|HISTSIZE|HOME|HOSTNAME|HOSTTYPE|IFS|INSTANCE|JOB|LANG|LANGUAGE|LC_ADDRESS|LC_ALL|LC_IDENTIFICATION|LC_MEASUREMENT|LC_MONETARY|LC_NAME|LC_NUMERIC|LC_PAPER|LC_TELEPHONE|LC_TIME|LESSCLOSE|LESSOPEN|LINES|LOGNAME|LS_COLORS|MACHTYPE|MAILCHECK|MANDATORY_PATH|NO_AT_BRIDGE|OLDPWD|OPTERR|OPTIND|ORBIT_SOCKETDIR|OSTYPE|PAPERSIZE|PATH|PIPESTATUS|PPID|PS1|PS2|PS3|PS4|PWD|RANDOM|REPLY|SECONDS|SELINUX_INIT|SESSION|SESSIONTYPE|SESSION_MANAGER|SHELL|SHELLOPTS|SHLVL|SSH_AUTH_SOCK|TERM|UID|UPSTART_EVENTS|UPSTART_INSTANCE|UPSTART_JOB|UPSTART_SESSION|USER|WINDOWID|XAUTHORITY|XDG_CONFIG_DIRS|XDG_CURRENT_DESKTOP|XDG_DATA_DIRS|XDG_GREETER_DATA_DIR|XDG_MENU_PREFIX|XDG_RUNTIME_DIR|XDG_SEAT|XDG_SEAT_PATH|XDG_SESSION_DESKTOP|XDG_SESSION_ID|XDG_SESSION_PATH|XDG_SESSION_TYPE|XDG_VTNR|XMODIFIERS)\\b",a={pattern:/(^(["']?)\w+\2)[ \t]+\S.*/,lookbehind:!0,alias:"punctuation",inside:null},n={bash:a,environment:{pattern:RegExp("\\$"+t),alias:"constant"},variable:[{pattern:/\$?\(\([\s\S]+?\)\)/,greedy:!0,inside:{variable:[{pattern:/(^\$\(\([\s\S]+)\)\)/,lookbehind:!0},/^\$\(\(/],number:/\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,operator:/--|\+\+|\*\*=?|<<=?|>>=?|&&|\|\||[=!+\-*/%<>^&|]=?|[?~:]/,punctuation:/\(\(?|\)\)?|,|;/}},{pattern:/\$\((?:\([^)]+\)|[^()])+\)|`[^`]+`/,greedy:!0,inside:{variable:/^\$\(|^`|\)$|`$/}},{pattern:/\$\{[^}]+\}/,greedy:!0,inside:{operator:/:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,punctuation:/[\[\]]/,environment:{pattern:RegExp("(\\{)"+t),lookbehind:!0,alias:"constant"}}},/\$(?:\w+|[#?*!@$])/],entity:/\\(?:[abceEfnrtv\\"]|O?[0-7]{1,3}|U[0-9a-fA-F]{8}|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{1,2})/};e.languages.bash={shebang:{pattern:/^#!\s*\/.*/,alias:"important"},comment:{pattern:/(^|[^"{\\$])#.*/,lookbehind:!0},"function-name":[{pattern:/(\bfunction\s+)[\w-]+(?=(?:\s*\(?:\s*\))?\s*\{)/,lookbehind:!0,alias:"function"},{pattern:/\b[\w-]+(?=\s*\(\s*\)\s*\{)/,alias:"function"}],"for-or-select":{pattern:/(\b(?:for|select)\s+)\w+(?=\s+in\s)/,alias:"variable",lookbehind:!0},"assign-left":{pattern:/(^|[\s;|&]|[<>]\()\w+(?:\.\w+)*(?=\+?=)/,inside:{environment:{pattern:RegExp("(^|[\\s;|&]|[<>]\\()"+t),lookbehind:!0,alias:"constant"}},alias:"variable",lookbehind:!0},parameter:{pattern:/(^|\s)-{1,2}(?:\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,alias:"variable",lookbehind:!0},string:[{pattern:/((?:^|[^<])<<-?\s*)(\w+)\s[\s\S]*?(?:\r?\n|\r)\2/,lookbehind:!0,greedy:!0,inside:n},{pattern:/((?:^|[^<])<<-?\s*)(["'])(\w+)\2\s[\s\S]*?(?:\r?\n|\r)\3/,lookbehind:!0,greedy:!0,inside:{bash:a}},{pattern:/(^|[^\\](?:\\\\)*)"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/,lookbehind:!0,greedy:!0,inside:n},{pattern:/(^|[^$\\])'[^']*'/,lookbehind:!0,greedy:!0},{pattern:/\$'(?:[^'\\]|\\[\s\S])*'/,greedy:!0,inside:{entity:n.entity}}],environment:{pattern:RegExp("\\$?"+t),alias:"constant"},variable:n.variable,function:{pattern:/(^|[\s;|&]|[<>]\()(?:add|apropos|apt|apt-cache|apt-get|aptitude|aspell|automysqlbackup|awk|basename|bash|bc|bconsole|bg|bzip2|cal|cargo|cat|cfdisk|chgrp|chkconfig|chmod|chown|chroot|cksum|clear|cmp|column|comm|composer|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|debootstrap|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|docker|docker-compose|du|egrep|eject|env|ethtool|expand|expect|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|git|gparted|grep|groupadd|groupdel|groupmod|groups|grub-mkconfig|gzip|halt|head|hg|history|host|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|ip|java|jobs|join|kill|killall|less|link|ln|locate|logname|logrotate|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|lynx|make|man|mc|mdadm|mkconfig|mkdir|mke2fs|mkfifo|mkfs|mkisofs|mknod|mkswap|mmv|more|most|mount|mtools|mtr|mutt|mv|nano|nc|netstat|nice|nl|node|nohup|notify-send|npm|nslookup|op|open|parted|passwd|paste|pathchk|ping|pkill|pnpm|podman|podman-compose|popd|pr|printcap|printenv|ps|pushd|pv|quota|quotacheck|quotactl|ram|rar|rcp|reboot|remsync|rename|renice|rev|rm|rmdir|rpm|rsync|scp|screen|sdiff|sed|sendmail|seq|service|sftp|sh|shellcheck|shuf|shutdown|sleep|slocate|sort|split|ssh|stat|strace|su|sudo|sum|suspend|swapon|sync|sysctl|tac|tail|tar|tee|time|timeout|top|touch|tr|traceroute|tsort|tty|umount|uname|unexpand|uniq|units|unrar|unshar|unzip|update-grub|uptime|useradd|userdel|usermod|users|uudecode|uuencode|v|vcpkg|vdir|vi|vim|virsh|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yarn|yes|zenity|zip|zsh|zypper)(?=$|[)\s;|&])/,lookbehind:!0},keyword:{pattern:/(^|[\s;|&]|[<>]\()(?:case|do|done|elif|else|esac|fi|for|function|if|in|select|then|until|while)(?=$|[)\s;|&])/,lookbehind:!0},builtin:{pattern:/(^|[\s;|&]|[<>]\()(?:\.|:|alias|bind|break|builtin|caller|cd|command|continue|declare|echo|enable|eval|exec|exit|export|getopts|hash|help|let|local|logout|mapfile|printf|pwd|read|readarray|readonly|return|set|shift|shopt|source|test|times|trap|type|typeset|ulimit|umask|unalias|unset)(?=$|[)\s;|&])/,lookbehind:!0,alias:"class-name"},boolean:{pattern:/(^|[\s;|&]|[<>]\()(?:false|true)(?=$|[)\s;|&])/,lookbehind:!0},"file-descriptor":{pattern:/\B&\d\b/,alias:"important"},operator:{pattern:/\d?<>|>\||\+=|=[=~]?|!=?|<<[<-]?|[&\d]?>>|\d[<>]&?|[<>][&=]?|&[>&]?|\|[&|]?/,inside:{"file-descriptor":{pattern:/^\d/,alias:"important"}}},punctuation:/\$?\(\(?|\)\)?|\.\.|[{}[\];\\]/,number:{pattern:/(^|\s)(?:[1-9]\d*|0)(?:[.,]\d+)?\b/,lookbehind:!0}},a.inside=e.languages.bash;for(var s=["comment","function-name","for-or-select","assign-left","parameter","string","environment","function","keyword","builtin","boolean","file-descriptor","operator","punctuation","number"],o=n.variable[1].inside,i=0;i<s.length;i++)o[s[i]]=e.languages.bash[s[i]];e.languages.sh=e.languages.bash,e.languages.shell=e.languages.bash}(Prism);
+!function(e){e.languages.diff={coord:[/^(?:\*{3}|-{3}|\+{3}).*$/m,/^@@.*@@$/m,/^\d.*$/m]};var n={"deleted-sign":"-","deleted-arrow":"<","inserted-sign":"+","inserted-arrow":">",unchanged:" ",diff:"!"};Object.keys(n).forEach((function(a){var i=n[a],r=[];/^\w+$/.test(a)||r.push(/\w+/.exec(a)[0]),"diff"===a&&r.push("bold"),e.languages.diff[a]={pattern:RegExp("^(?:["+i+"].*(?:\r\n?|\n|(?![\\s\\S])))+","m"),alias:r,inside:{line:{pattern:/(.)(?=[\s\S]).*(?:\r\n?|\n)?/,lookbehind:!0},prefix:{pattern:/[\s\S]/,alias:/\w+/.exec(a)[0]}}}})),Object.defineProperty(e.languages.diff,"PREFIXES",{value:n})}(Prism);
+Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0},"string-interpolation":{pattern:/(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i,greedy:!0,inside:{interpolation:{pattern:/((?:^|[^{])(?:\{\{)*)\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}])+\})+\})+\}/,lookbehind:!0,inside:{"format-spec":{pattern:/(:)[^:(){}]+(?=\}$)/,lookbehind:!0},"conversion-option":{pattern:/![sra](?=[:}]$)/,alias:"punctuation"},rest:null}},string:/[\s\S]+/}},"triple-quoted-string":{pattern:/(?:[rub]|br|rb)?("""|''')[\s\S]*?\1/i,greedy:!0,alias:"string"},string:{pattern:/(?:[rub]|br|rb)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i,greedy:!0},function:{pattern:/((?:^|\s)def[ \t]+)[a-zA-Z_]\w*(?=\s*\()/g,lookbehind:!0},"class-name":{pattern:/(\bclass\s+)\w+/i,lookbehind:!0},decorator:{pattern:/(^[\t ]*)@\w+(?:\.\w+)*/m,lookbehind:!0,alias:["annotation","punctuation"],inside:{punctuation:/\./}},keyword:/\b(?:_(?=\s*:)|and|as|assert|async|await|break|case|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|match|nonlocal|not|or|pass|print|raise|return|try|while|with|yield)\b/,builtin:/\b(?:__import__|abs|all|any|apply|ascii|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|divmod|enumerate|eval|execfile|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|property|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b/,boolean:/\b(?:False|None|True)\b/,number:/\b0(?:b(?:_?[01])+|o(?:_?[0-7])+|x(?:_?[a-f0-9])+)\b|(?:\b\d+(?:_\d+)*(?:\.(?:\d+(?:_\d+)*)?)?|\B\.\d+(?:_\d+)*)(?:e[+-]?\d+(?:_\d+)*)?j?(?!\w)/i,operator:/[-+%=]=?|!=|:=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,punctuation:/[{}[\];(),.:]/},Prism.languages.python["string-interpolation"].inside.interpolation.inside.rest=Prism.languages.python,Prism.languages.py=Prism.languages.python;
+!function(n){function e(n){return n=n.replace(/<inner>/g,(function(){return"(?:\\\\.|[^\\\\\n\r]|(?:\n|\r\n?)(?![\r\n]))"})),RegExp("((?:^|[^\\\\])(?:\\\\{2})*)(?:"+n+")")}var t="(?:\\\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\\\|\r\n`])+",a="\\|?__(?:\\|__)+\\|?(?:(?:\n|\r\n?)|(?![^]))".replace(/__/g,(function(){return t})),i="\\|?[ \t]*:?-{3,}:?[ \t]*(?:\\|[ \t]*:?-{3,}:?[ \t]*)+\\|?(?:\n|\r\n?)";n.languages.markdown=n.languages.extend("markup",{}),n.languages.insertBefore("markdown","prolog",{"front-matter-block":{pattern:/(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,lookbehind:!0,greedy:!0,inside:{punctuation:/^---|---$/,"front-matter":{pattern:/\S+(?:\s+\S+)*/,alias:["yaml","language-yaml"],inside:n.languages.yaml}}},blockquote:{pattern:/^>(?:[\t ]*>)*/m,alias:"punctuation"},table:{pattern:RegExp("^"+a+i+"(?:"+a+")*","m"),inside:{"table-data-rows":{pattern:RegExp("^("+a+i+")(?:"+a+")*$"),lookbehind:!0,inside:{"table-data":{pattern:RegExp(t),inside:n.languages.markdown},punctuation:/\|/}},"table-line":{pattern:RegExp("^("+a+")"+i+"$"),lookbehind:!0,inside:{punctuation:/\||:?-{3,}:?/}},"table-header-row":{pattern:RegExp("^"+a+"$"),inside:{"table-header":{pattern:RegExp(t),alias:"important",inside:n.languages.markdown},punctuation:/\|/}}}},code:[{pattern:/((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,lookbehind:!0,alias:"keyword"},{pattern:/^```[\s\S]*?^```$/m,greedy:!0,inside:{"code-block":{pattern:/^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,lookbehind:!0},"code-language":{pattern:/^(```).+/,lookbehind:!0},punctuation:/```/}}],title:[{pattern:/\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,alias:"important",inside:{punctuation:/==+$|--+$/}},{pattern:/(^\s*)#.+/m,lookbehind:!0,alias:"important",inside:{punctuation:/^#+|#+$/}}],hr:{pattern:/(^\s*)([*-])(?:[\t ]*\2){2,}(?=\s*$)/m,lookbehind:!0,alias:"punctuation"},list:{pattern:/(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,lookbehind:!0,alias:"punctuation"},"url-reference":{pattern:/!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,inside:{variable:{pattern:/^(!?\[)[^\]]+/,lookbehind:!0},string:/(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,punctuation:/^[\[\]!:]|[<>]/},alias:"url"},bold:{pattern:e("\\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\\b|\\*\\*(?:(?!\\*)<inner>|\\*(?:(?!\\*)<inner>)+\\*)+\\*\\*"),lookbehind:!0,greedy:!0,inside:{content:{pattern:/(^..)[\s\S]+(?=..$)/,lookbehind:!0,inside:{}},punctuation:/\*\*|__/}},italic:{pattern:e("\\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\\b|\\*(?:(?!\\*)<inner>|\\*\\*(?:(?!\\*)<inner>)+\\*\\*)+\\*"),lookbehind:!0,greedy:!0,inside:{content:{pattern:/(^.)[\s\S]+(?=.$)/,lookbehind:!0,inside:{}},punctuation:/[*_]/}},strike:{pattern:e("(~~?)(?:(?!~)<inner>)+\\2"),lookbehind:!0,greedy:!0,inside:{content:{pattern:/(^~~?)[\s\S]+(?=\1$)/,lookbehind:!0,inside:{}},punctuation:/~~?/}},"code-snippet":{pattern:/(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,lookbehind:!0,greedy:!0,alias:["code","keyword"]},url:{pattern:e('!?\\[(?:(?!\\])<inner>)+\\](?:\\([^\\s)]+(?:[\t ]+"(?:\\\\.|[^"\\\\])*")?\\)|[ \t]?\\[(?:(?!\\])<inner>)+\\])'),lookbehind:!0,greedy:!0,inside:{operator:/^!/,content:{pattern:/(^\[)[^\]]+(?=\])/,lookbehind:!0,inside:{}},variable:{pattern:/(^\][ \t]?\[)[^\]]+(?=\]$)/,lookbehind:!0},url:{pattern:/(^\]\()[^\s)]+/,lookbehind:!0},string:{pattern:/(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,lookbehind:!0}}}}),["url","bold","italic","strike"].forEach((function(e){["url","bold","italic","strike","code-snippet"].forEach((function(t){e!==t&&(n.languages.markdown[e].inside.content.inside[t]=n.languages.markdown[t])}))})),n.hooks.add("after-tokenize",(function(n){"markdown"!==n.language&&"md"!==n.language||function n(e){if(e&&"string"!=typeof e)for(var t=0,a=e.length;t<a;t++){var i=e[t];if("code"===i.type){var r=i.content[1],o=i.content[3];if(r&&o&&"code-language"===r.type&&"code-block"===o.type&&"string"==typeof r.content){var l=r.content.replace(/\b#/g,"sharp").replace(/\b\+\+/g,"pp"),s="language-"+(l=(/[a-z][\w-]*/i.exec(l)||[""])[0].toLowerCase());o.alias?"string"==typeof o.alias?o.alias=[o.alias,s]:o.alias.push(s):o.alias=[s]}}else n(i.content)}}(n.tokens)})),n.hooks.add("wrap",(function(e){if("code-block"===e.type){for(var t="",a=0,i=e.classes.length;a<i;a++){var s=e.classes[a],d=/language-(.+)/.exec(s);if(d){t=d[1];break}}var p=n.languages[t];if(p)e.content=n.highlight(e.content.replace(r,"").replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi,(function(n,e){var t;return"#"===(e=e.toLowerCase())[0]?(t="x"===e[1]?parseInt(e.slice(2),16):Number(e.slice(1)),l(t)):o[e]||n})),p,t);else if(t&&"none"!==t&&n.plugins.autoloader){var u="md-"+(new Date).valueOf()+"-"+Math.floor(1e16*Math.random());e.attributes.id=u,n.plugins.autoloader.loadLanguages(t,(function(){var e=document.getElementById(u);e&&(e.innerHTML=n.highlight(e.textContent,n.languages[t],t))}))}}}));var r=RegExp(n.languages.markup.tag.pattern.source,"gi"),o={amp:"&",lt:"<",gt:">",quot:'"'},l=String.fromCodePoint||String.fromCharCode;n.languages.md=n.languages.markdown}(Prism);
+  </script>
+  <script>
+/* Deep Review — Prism initialization and line-number wrapping.
+ * Inlined into each generated HTML file by the beautify-review skill.
+ * Runs synchronously at the end of <body> — no event listeners.
+ *
+ * Prerequisite: a preceding <script> must set Prism.manual = true
+ * before the Prism core <script> loads.
+ */
+
+Prism.highlightAll();
+
+document.querySelectorAll('pre[data-start]').forEach(function(pre) {
+  var startLine = parseInt(pre.getAttribute('data-start'), 10) || 1;
+  var hlAttr = pre.getAttribute('data-line') || '';
+
+  /* Parse data-line into a Set of line numbers to highlight.
+   * Accepts comma-separated values: "75,76,77" or ranges: "75-84". */
+  var hlLines = new Set();
+  hlAttr.split(',').forEach(function(part) {
+    part = part.trim();
+    if (!part) return;
+    var m = part.match(/^(\d+)-(\d+)$/);
+    if (m) {
+      for (var i = parseInt(m[1], 10); i <= parseInt(m[2], 10); i++) hlLines.add(i);
+    } else {
+      hlLines.add(parseInt(part, 10));
+    }
+  });
+
+  var code = pre.querySelector('code');
+  if (!code) return;
+
+  var html = code.innerHTML;
+  var lines = html.split('\n');
+  /* Strip a trailing empty line that Prism sometimes leaves. */
+  if (lines.length > 0 && lines[lines.length - 1].trim() === '') lines.pop();
+
+  var wrapped = lines.map(function(line, idx) {
+    var lineNum = startLine + idx;
+    var cls = 'code-line' + (hlLines.has(lineNum) ? ' line-hl' : '');
+    return '<span class="' + cls + '">' + line + '</span>';
+  });
+
+  /* Join with '' (empty string) — NOT '\n'.
+   * Inside <pre>, newlines are literal whitespace. Since .code-line uses
+   * display: block, joining with '\n' produces double line spacing. */
+  code.innerHTML = wrapped.join('');
+  pre.style.counterReset = 'line ' + (startLine - 1);
+});
+
+/* GitHub reference tooltips — show title and state on hover for #N links.
+ * Links must have class="gh-ref" and data-title set by the generator. */
+document.querySelectorAll('a.gh-ref[data-title]').forEach(function(link) {
+  var tip = null;
+
+  link.addEventListener('mouseenter', function() {
+    if (tip) return;
+    tip = document.createElement('div');
+    tip.className = 'gh-tooltip';
+
+    var state = link.getAttribute('data-state') || '';
+    var type = link.getAttribute('data-type') || 'issue';
+    var label = state.charAt(0).toUpperCase() + state.slice(1).toLowerCase();
+
+    var pill = document.createElement('span');
+    pill.className = 'gh-tooltip-state gh-state-' + state;
+    pill.textContent = label + (type === 'pr' ? ' PR' : '');
+
+    var title = document.createElement('span');
+    title.className = 'gh-tooltip-title';
+    title.textContent = link.getAttribute('data-title');
+
+    tip.appendChild(pill);
+    tip.appendChild(title);
+    document.body.appendChild(tip);
+
+    var rect = link.getBoundingClientRect();
+    var tw = tip.offsetWidth;
+    var th = tip.offsetHeight;
+    var left = rect.left + window.scrollX;
+    var top = rect.top + window.scrollY - th - 8;
+
+    if (left + tw > window.innerWidth - 12) left = window.innerWidth - tw - 12;
+    if (left < 4) left = 4;
+    if (top < window.scrollY + 4) top = rect.bottom + window.scrollY + 8;
+
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+    tip.style.opacity = '1';
+  });
+
+  link.addEventListener('mouseleave', function() {
+    if (tip) { tip.remove(); tip = null; }
+  });
+});
+
+  </script>
+</body>
+</html>
